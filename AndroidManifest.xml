@@ -15,6 +15,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="org.study.github.test.MainActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +23,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="org.study.github.test.AppreciateTabActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="org.study.github.test.DiscussTabActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="org.study.github.test.FavoriteTabActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="org.study.github.test.IdentificationTabActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="org.study.github.test.SettingTabActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/app_name" >
+        </activity>
+        
     </application>
 
 </manifest>
