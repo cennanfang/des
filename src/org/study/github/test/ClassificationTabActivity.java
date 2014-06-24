@@ -3,7 +3,7 @@ package org.study.github.test;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class DiscussTabActivity extends Activity{
+public class ClassificationTabActivity extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
