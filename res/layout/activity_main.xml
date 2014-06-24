@@ -47,7 +47,7 @@
         android:layout_height="fill_parent"
         android:layout_above="@id/main_tab"
         android:layout_below="@id/main_tab_banner"
-        android:background="#FFFFE0"
+        android:background="#FFFFFF"
         android:orientation="horizontal" >
     </LinearLayout>
 
