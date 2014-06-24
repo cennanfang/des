@@ -1,9 +1,10 @@
 package com.zyjzm.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class UserCenterTabActivity extends Activity{
+import com.zyjzm.base.BaseActivity;
+
+public class UserCenterTabActivity extends BaseActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -3,9 +3,9 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <include 
+  	<include 
         android:id="@+id/main_tab_banner"
-        layout="@layout/main_header" />
+        layout="@layout/main_header" /> 
 
     <LinearLayout
         android:id="@+id/main_tab"

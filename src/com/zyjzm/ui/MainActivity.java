@@ -1,5 +1,7 @@
 package com.zyjzm.ui;
 
+import com.zyjzm.base.AppManager;
+
 import android.app.ActivityGroup;
 import android.app.LocalActivityManager;
 import android.content.Intent;
@@ -35,11 +37,13 @@ public class MainActivity extends ActivityGroup {
 
 		mainTabContainer = (LinearLayout) findViewById(R.id.main_tab_container);
 		localActivityManager = getLocalActivityManager();
-		setContainerView("appreciate", HomeTabActivity.class);
+		setContainerView("home", HomeTabActivity.class);
 
 		initTitle();
 		initTab();
-
+		
+		// 添加到栈管理
+		AppManager.getAppManager().addActivity(this);
 	}
 	
 	private void initTitle() {
@@ -75,7 +79,8 @@ public class MainActivity extends ActivityGroup {
 					btnHome.setEnabled(false);
 					mainHeadTitle.setText(R.string.head_title_home);
 					mainHeadLogo.setImageResource(R.drawable.head_logo_home);
-					setContainerView("appreciate", HomeTabActivity.class);
+					setContainerView("home", HomeTabActivity.class);
+					headTitleSearch.setVisibility(View.VISIBLE);
 				} else {
 					btnHome.setEnabled(true);
 					headTitleSearch.setVisibility(View.GONE);
@@ -84,7 +89,7 @@ public class MainActivity extends ActivityGroup {
 					btnClassification.setEnabled(false);
 					mainHeadTitle.setText(R.string.head_title_classification);
 					mainHeadLogo.setImageResource(R.drawable.head_logo_classification);
-					setContainerView("discuss", ClassificationTabActivity.class);
+					setContainerView("classification", ClassificationTabActivity.class);
 				} else {
 					btnClassification.setEnabled(true);
 				}
@@ -92,7 +97,7 @@ public class MainActivity extends ActivityGroup {
 					btnUserCenter.setEnabled(false);
 					mainHeadTitle.setText(R.string.head_title_user_center);
 					mainHeadLogo.setImageResource(R.drawable.head_logo_user_center);
-					setContainerView("favorite", UserCenterTabActivity.class);
+					setContainerView("userCenter", UserCenterTabActivity.class);
 				} else {
 					btnUserCenter.setEnabled(true);
 				}
