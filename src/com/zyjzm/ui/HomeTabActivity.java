@@ -37,21 +37,20 @@ public class HomeTabActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
+		initImagePager();
+	}
+
+	/**
+	 * 初始化图片跑马灯
+	 */
+	private void initImagePager() {
 		// 图片ID
-		imageIds = new int[] { 
-				R.drawable.home_01, 
-				R.drawable.home_02, 
-				R.drawable.home_03,
-				R.drawable.home_04, 
-		};
+		imageIds = new int[] { R.drawable.home_01, R.drawable.home_02,
+				R.drawable.home_03, R.drawable.home_04, };
 
 		// 图片标题
-		titles = new String[] { 
-				"巩俐不低俗，我就不能低俗", 
-				"扑树又回来啦！再唱经典老歌引万人大合唱",
-				"揭秘北京电影如何升级", 
-				"乐视网TV版大派送" 
-		};
+		titles = new String[] { "巩俐不低俗，我就不能低俗", "扑树又回来啦！再唱经典老歌引万人大合唱",
+				"揭秘北京电影如何升级", "乐视网TV版大派送" };
 
 		// 显示的图片
 		images = new ArrayList<ImageView>();
@@ -68,7 +67,6 @@ public class HomeTabActivity extends BaseActivity {
 		dots.add(findViewById(R.id.dot_1));
 		dots.add(findViewById(R.id.dot_2));
 		dots.add(findViewById(R.id.dot_3));
-		dots.add(findViewById(R.id.dot_4));
 
 		title = (TextView) findViewById(R.id.title);
 		title.setText(titles[0]);
@@ -99,7 +97,6 @@ public class HomeTabActivity extends BaseActivity {
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
-
 	}
 
 	private class ViewPagerAdapter extends PagerAdapter {
