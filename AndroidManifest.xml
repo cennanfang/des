@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.study.github.test.MainActivity"
+            android:name="com.zyjzm.ui.MainActivity"
             android:theme="@android:style/Theme.NoTitleBar"
             android:label="@string/app_name" >
             <intent-filter>
@@ -24,27 +24,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.study.github.test.HomeTabActivity"
+            android:name="com.zyjzm.ui.HomeTabActivity"
             android:theme="@android:style/Theme.NoTitleBar"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="org.study.github.test.ClassificationTabActivity"
+            android:name="com.zyjzm.ui.ClassificationTabActivity"
             android:theme="@android:style/Theme.NoTitleBar"
             android:label="@string/app_name" >
         </activity>
          <activity
-            android:name="org.study.github.test.UserCenterTabActivity"
+            android:name="com.zyjzm.ui.UserCenterTabActivity"
             android:theme="@android:style/Theme.NoTitleBar"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="org.study.github.test.IdentificationTabActivity"
+            android:name="com.zyjzm.ui.IdentificationTabActivity"
             android:theme="@android:style/Theme.NoTitleBar"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="org.study.github.test.SettingTabActivity"
+            android:name="com.zyjzm.ui.SettingTabActivity"
             android:theme="@android:style/Theme.NoTitleBar"
             android:label="@string/app_name" >
         </activity>
