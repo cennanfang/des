@@ -1,7 +1,5 @@
 package com.zyjzm.ui;
 
-import org.study.github.test.R;
-
 import android.app.ActivityGroup;
 import android.app.LocalActivityManager;
 import android.content.Intent;
