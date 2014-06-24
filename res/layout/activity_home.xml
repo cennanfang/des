@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
@@ -7,27 +7,9 @@
     <!-- 图片跑马灯 -->
 
     <include
-        android:id="@+id/home_image_layout"
         layout="@layout/home_image_pager" />
-
-    <LinearLayout
-        android:id="@+id/home_image_middle"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/home_image_layout"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:id="@+id/home_img_salary_day"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:src="@drawable/home_salary_day"/>
-        
-        <ImageView
-            android:id="@+id/home_img_salary_longtime"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:src="@drawable/home_salary_longtime"/>
-    </LinearLayout>
-
-</RelativeLayout>
+    
+    <include 
+        layout="@layout/home_classification"/>
+	
+</LinearLayout>
