@@ -3,19 +3,19 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-  	<include 
+    <include
         android:id="@+id/main_tab_banner"
-        layout="@layout/main_header" /> 
+        layout="@layout/main_header" />
 
     <LinearLayout
         android:id="@+id/main_tab"
         android:layout_width="fill_parent"
-        android:layout_height="42.0dip"
+        android:layout_height="46.0dip"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <Button
+        <!-- <Button
             android:id="@+id/frame_btn_home"
             style="@style/frame_button"
             android:text="@string/head_title_home" />
@@ -38,7 +38,26 @@
         <Button
             android:id="@+id/frame_btn_user_center"
             style="@style/frame_button"
-            android:text="@string/head_title_user_center" />
+            android:text="@string/head_title_user_center" /> -->
+            
+            <RadioButton 
+		android:id="@+id/frame_btn_home"
+            style="@style/main_footbar_radio"
+            android:text="@string/head_title_home"/>
+	<ImageView
+		style="@style/main_footbar_cutline"
+		android:src="@drawable/widget_bar_cut_off"/>
+	<RadioButton 
+		 android:id="@+id/frame_btn_classification"
+            style="@style/main_footbar_radio"
+            android:text="@string/head_title_classification" />
+	<ImageView
+		style="@style/main_footbar_cutline"
+		android:src="@drawable/widget_bar_cut_off"/>
+	<RadioButton 
+		 android:id="@+id/frame_btn_user_center"
+            style="@style/main_footbar_radio"
+            android:text="@string/head_title_user_center"/>
     </LinearLayout>
 
     <LinearLayout

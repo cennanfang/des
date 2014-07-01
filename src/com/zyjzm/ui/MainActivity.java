@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class MainActivity extends ActivityGroup {
@@ -57,9 +58,15 @@ public class MainActivity extends ActivityGroup {
 	 * 初始化Tab项
 	 */
 	private void initTab() {
+		RadioGroup group = new RadioGroup(this);
+		
 		btnHome = (Button) findViewById(R.id.frame_btn_home);
 		btnClassification = (Button) findViewById(R.id.frame_btn_classification);
 		btnUserCenter = (Button) findViewById(R.id.frame_btn_user_center);
+		
+		group.addView(btnClassification);
+		group.addView(btnHome);
+		group.addView(btnUserCenter);
 		// 初始化状态
 		btnHome.setEnabled(false);
 		btnClassification.setEnabled(true);
