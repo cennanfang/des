@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  
+    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<display-name>Document Exchang System</display-name>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- 定位applicationContext.xml的物理位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext.xml</param-value>
+	</context-param>
+	<!-- hibernate 懒加载的问题过滤 ,可以不配置 -->
+	<filter>
+		<description>hibernate Session 过滤器</description>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- struts配置 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>
