@@ -23,9 +23,6 @@ public class AppInitializer  extends AbstractAnnotationConfigDispatcherServletIn
  
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/");
-        
-        
-        
     }
 
 	@Override
