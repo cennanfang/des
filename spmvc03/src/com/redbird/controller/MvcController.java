@@ -20,11 +20,13 @@ public class MvcController {
 	
 	
 	@RequestMapping("/out")
-	public void outData(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public void responseOutWithJson(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String jsonStr = "{username:'²ÐÈ±µÄ¹Â¶À',password:'admin123'}";
 		out.write(jsonStr);
+		out.flush();
+		out.close();
 	}
 	
 	@RequestMapping("/out_jsp")
@@ -33,6 +35,8 @@ public class MvcController {
 		PrintWriter out = response.getWriter();
 		String jsonStr = "{username:'²ÐÈ±µÄ¹Â¶À',password:'admin123'}";
 		out.write(jsonStr);
+		out.flush();
+		out.close();
 		return "out";
 	}
 }
