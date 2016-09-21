@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+		<!-- 注册userMapper.xml文件， userMapper.xml位于com.redbird.wehelp.pojo.mapping这个包下，所以resource写成com/redbird/wehelp/pojo/mapping/userMapper.xml -->
+		<mapper resource="com/redbird/wehelp/dao/userDao.xml" />
+	</mappers>
+</configuration>
