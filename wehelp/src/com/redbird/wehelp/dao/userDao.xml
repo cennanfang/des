@@ -7,14 +7,26 @@
 		resultType="com.redbird.wehelp.pojo.User"就表示将查询结果封装成一个User类的对象返回 User类就是users表所对应的实体类 -->
 	<!-- 根据id查询得到一个user对象 -->
 	<select id="find" parameterType="String" resultType="com.redbird.wehelp.pojo.User">
-		select * from w_user where id=#{id}
+		select 
+		id as id,
+		user_name as userName,
+		password as password,
+		nick_name as nickName,
+		sex as sex,
+		age as age,
+		phone as phone,
+		email as email,
+		address as address,
+		register_date as registerDate
+		from w_user where id=#{id}
 	</select>
 	
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.User" flushCache="true">  
    		INSERT INTO w_user (id, user_name, password, nick_name, sex, age, phone, email, address) 
    				VALUES (#{id},#{userName},#{password},#{nickName},#{sex},#{age},#{phone},#{email},#{address})  
 	</insert>  
-	<update id="modify" parameterType="com.redbird.wehelp.pojo.User">  
+	
+	<update id="update" parameterType="com.redbird.wehelp.pojo.User">  
     	UPDATE w_user SET user_name=#{userName}, password=#{password}, nick_name=#{nickName}, sex=#{sex}, 
     					age=#{age}, phone=#{phone}, email=#{email}, address=#{address} WHERE id=#{id}  
 	</update>  

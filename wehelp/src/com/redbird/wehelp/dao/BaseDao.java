@@ -8,7 +8,7 @@ import com.redbird.wehelp.util.PageModel;
  * @author c
  *
  */
-public interface BaseDao {
+public interface BaseDao<T> {
 
 	/**
 	 * 添加pojo对象到数据库
@@ -20,20 +20,20 @@ public interface BaseDao {
 	 * 从数据中删除pojo对象
 	 * @param pojo
 	 */
-	public void delete(BasePojo pojo);
+	public void delete(String id);
 	
 	/**
 	 * 修改pojo对象
 	 * @param pojo
 	 */
-	public void modify(BasePojo pojo);
+	public void update(BasePojo pojo);
 	
 	/**
 	 * 通过ID查找pojo对象
 	 * @param id
 	 * @return
 	 */
-	public BasePojo find(String id);
+	public T find(String id);
 	
 	/**
 	 *  分页查询

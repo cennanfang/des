@@ -1,5 +1,7 @@
 package com.redbird.wehelp.dao;
 
-public interface UserDao extends BaseDao{
+import com.redbird.wehelp.pojo.User;
+
+public interface UserDao extends BaseDao<User>{
 
 }

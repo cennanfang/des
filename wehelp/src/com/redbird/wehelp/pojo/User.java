@@ -27,7 +27,12 @@ public class User extends BasePojo {
 	private String address;
 	// ×¢²áÈÕÆÚ
 	private Date registerDate;
-
+	
+	@Override
+	public String toString() {
+		return userName + " " + nickName;
+	}
+	
 	public String getUserName() {
 		return userName;
 	}
