@@ -31,14 +31,14 @@
     </resultMap>
 	
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.Message" flushCache="true">  
-   		INSERT INTO w_message_type (type_name) VALUES (#{typeName})  
+   		INSERT INTO w_message (content, contacts, type_id, user_id) VALUES (#{content}, #{contacts}, #{messageType.id}, #{user.id})  
 	</insert>  
 	
 	<update id="update" parameterType="com.redbird.wehelp.pojo.Message">  
-    	UPDATE w_message_type SET type_name=#{typeName} WHERE id=#{id}  
+    	UPDATE w_message SET content=#{content}, contacts=#{contacts}, type_id=#{messageType.id}, user_id=#{user.id} WHERE id=#{id}  
 	</update>  
 	
 	<delete id="delete" parameterType="int">  
-    	DELETE FROM w_message_type WHERE id=#{id}  
+    	DELETE FROM w_message WHERE id=#{id}  
 	</delete>  
 </mapper>
