@@ -9,6 +9,11 @@ public class MessageType extends BasePojo{
 
 	// ÀàĞÍÃû³Æ
 	private String typeName;
+	
+	@Override
+	public String toString() {
+		return typeName;
+	}
 
 	public String getTypeName() {
 		return typeName;
