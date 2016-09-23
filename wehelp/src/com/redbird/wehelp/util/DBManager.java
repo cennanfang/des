@@ -3,8 +3,8 @@ package com.redbird.wehelp.util;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.redbird.wehelp.dao.UserDao;
-import com.redbird.wehelp.pojo.User;
+import com.redbird.wehelp.dao.MessageDao;
+import com.redbird.wehelp.pojo.Message;
 
 /**
  * 管理数据库
@@ -17,7 +17,9 @@ public class DBManager {
 	public static void main(String args[]) {
 		ApplicationContext ctx=null;
         ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
-        UserDao userDao=(UserDao) ctx.getBean("userDao");
+        MessageDao messageDao = (MessageDao) ctx.getBean("messageDao");
+        Message msg = messageDao.find(1);
+        System.out.println(msg);
 //        User user=new User();
         //添加两条数据
 //        user = generateUser();
@@ -32,18 +34,18 @@ public class DBManager {
 //        userDao.update(user);
 //        System.out.println("修改成功");
 //        //删除数据
-        userDao.delete("B2B2CC32030842C18E310FA39A8D33F3");
-        System.out.println("删除成功");
+//        userDao.delete("B2B2CC32030842C18E310FA39A8D33F3");
+//        System.out.println("删除成功");
 	}
 	
-	public static User generateUser() {
-		User u = new User();
-		u.setId(GUID.generate());
-		u.setUserName("jack");
-		u.setPassword("jack123");
-		u.setNickName("杰克");
-		u.setSex(1);
-		u.setAge(18);
-		return u;
-	}
+//	public static User generateUser() {
+//		User u = new User();
+//		u.setId(GUID.generate());
+//		u.setUserName("jack");
+//		u.setPassword("jack123");
+//		u.setNickName("杰克");
+//		u.setSex(1);
+//		u.setAge(18);
+//		return u;
+//	}
 }

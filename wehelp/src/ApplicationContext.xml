@@ -15,7 +15,8 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://115.28.152.94:3306/wehelp?useUnicode=true&amp;characterEncoding=UTF-8
+			<value>
+			jdbc:mysql://115.28.152.94:3306/wehelp?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
 			</value>
 			<!--springmybaitis是我的数据库 -->
 		</property>
@@ -30,8 +31,17 @@
 		<property name="dataSource" ref="jdbcDataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
+	
 	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.redbird.wehelp.dao.UserDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="messageDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.redbird.wehelp.dao.MessageDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="messageTypeDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.redbird.wehelp.dao.MessageTypeDao"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 </beans>

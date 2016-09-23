@@ -13,7 +13,7 @@ public class Message extends BasePojo{
 	private String content;
 	
 	// 联系方式
-	private String contects;
+	private String contacts;
 	
 	// 创建日期（创建草稿的时间）
 	private Date createDate;
@@ -26,6 +26,15 @@ public class Message extends BasePojo{
 	
 	// 创建人
 	private User user;
+	
+	@Override
+	public String toString() {
+		String msg = user.getNickName() + " "
+				   + messageType.getTypeName() 
+				   + ":" + content + " 联系方式 "
+				   + contacts;
+		return msg;
+	}
 
 	public String getContent() {
 		return content;
@@ -33,14 +42,6 @@ public class Message extends BasePojo{
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getContects() {
-		return contects;
-	}
-
-	public void setContects(String contects) {
-		this.contects = contects;
 	}
 
 	public Date getCreateDate() {
@@ -73,5 +74,13 @@ public class Message extends BasePojo{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(String contacts) {
+		this.contacts = contacts;
 	}
 }

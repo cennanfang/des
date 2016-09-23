@@ -8,13 +8,14 @@ package com.redbird.wehelp.pojo;
 public class BasePojo {
 
 	// pojoÀàµÄÖ÷¼ü
-	protected String id;
+	protected int id;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
+
 }
