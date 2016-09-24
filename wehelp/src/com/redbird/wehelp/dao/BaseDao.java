@@ -1,7 +1,5 @@
 package com.redbird.wehelp.dao;
 
-import com.redbird.wehelp.util.PageModel;
-
 /**
  * 所有DAO继承接口
  * @author c
@@ -34,11 +32,4 @@ public interface BaseDao<T> {
 	 */
 	public T find(int id);
 	
-	/**
-	 *  分页查询
-	 * @param pageNo
-	 * @param pageSize
-	 * @return
-	 */
-	public PageModel find(int pageNo, int pageSize);
 }

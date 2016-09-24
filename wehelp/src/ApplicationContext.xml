@@ -50,4 +50,8 @@
 		<property name="mapperInterface" value="com.redbird.wehelp.dao.MessageTypeDao"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	<bean id="userRoleDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.redbird.wehelp.dao.UserRoleDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 </beans>

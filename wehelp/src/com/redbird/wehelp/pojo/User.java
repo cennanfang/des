@@ -1,6 +1,7 @@
 package com.redbird.wehelp.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户信息类
@@ -27,6 +28,8 @@ public class User extends BasePojo {
 	private String address;
 	// 注册日期
 	private Date registerDate;
+	// 用户所拥有的角色
+	private List<UserRole> userRoles;
 	
 	@Override
 	public String toString() {
@@ -103,5 +106,13 @@ public class User extends BasePojo {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 }

@@ -6,31 +6,41 @@
 	<!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复 使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型 
 		resultType="com.redbird.wehelp.pojo.User"就表示将查询结果封装成一个User类的对象返回 User类就是users表所对应的实体类 -->
 	<!-- 根据id查询得到一个user对象 -->
-	<select id="find" parameterType="int" resultType="com.redbird.wehelp.pojo.User">
-		select 
-		id as id,
-		user_name as userName,
-		password as password,
-		nick_name as nickName,
-		sex as sex,
-		age as age,
-		phone as phone,
-		email as email,
-		address as address,
-		register_date as registerDate
-		from w_user where id=#{id}
+	<select id="find" parameterType="int" resultMap="findUserResult">
+		select * from w_user u where id=#{id}
+	</select>
+
+	<select id="findByUserName" parameterType="String" resultMap="findUserResult">
+		select * from w_user where user_name=#{userName}
 	</select>
 	
-	<insert id="add" parameterType="com.redbird.wehelp.pojo.User" flushCache="true">  
-   		INSERT INTO w_user ( user_name, password, nick_name, sex, age, phone, email, address) 
-   				VALUES (#{userName},#{password},#{nickName},#{sex},#{age},#{phone},#{email},#{address})  
-	</insert>  
-	
-	<update id="update" parameterType="com.redbird.wehelp.pojo.User">  
-    	UPDATE w_user SET user_name=#{userName}, password=#{password}, nick_name=#{nickName}, sex=#{sex}, 
-    					age=#{age}, phone=#{phone}, email=#{email}, address=#{address} WHERE id=#{id}  
-	</update>  
-	<delete id="delete" parameterType="int">  
-    	DELETE FROM w_user WHERE id=#{id}  
-	</delete>  
+	<resultMap type="com.redbird.wehelp.pojo.User" id="findUserResult">
+		<id property="id" column="id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="nickName" column="nick_name" />
+		<result property="sex" column="sex" />
+		<result property="age" column="age" />
+		<result property="phone" column="phone" />
+		<result property="email" column="email" />
+		<result property="address" column="address" />
+		<result property="registerDate" column="register_date" />
+	</resultMap>
+
+	<insert id="add" parameterType="com.redbird.wehelp.pojo.User"
+		flushCache="true">
+		INSERT INTO w_user ( user_name, password, nick_name, sex, age, phone, email,
+		address)
+		VALUES
+		(#{userName},#{password},#{nickName},#{sex},#{age},#{phone},#{email},#{address})
+	</insert>
+
+	<update id="update" parameterType="com.redbird.wehelp.pojo.User">
+		UPDATE w_user SET user_name=#{userName}, password=#{password},
+		nick_name=#{nickName}, sex=#{sex},
+		age=#{age}, phone=#{phone}, email=#{email}, address=#{address} WHERE id=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM w_user WHERE id=#{id}
+	</delete>
 </mapper>

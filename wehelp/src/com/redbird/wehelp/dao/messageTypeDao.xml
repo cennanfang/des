@@ -4,16 +4,16 @@
 	<select id="find" parameterType="int" resultType="com.redbird.wehelp.pojo.MessageType">
 		select 
 		id as id,
-		type_name as typeName
+		name as name
 		from w_message_type where id=#{id}
 	</select>
 	
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.MessageType" flushCache="true">  
-   		INSERT INTO w_message_type (type_name) VALUES (#{typeName})  
+   		INSERT INTO w_message_type (name) VALUES (#{name})  
 	</insert>  
 	
 	<update id="update" parameterType="com.redbird.wehelp.pojo.MessageType">  
-    	UPDATE w_message_type SET type_name=#{typeName} WHERE id=#{id}  
+    	UPDATE w_message_type SET name=#{name} WHERE id=#{id}  
 	</update>  
 	
 	<delete id="delete" parameterType="int">  

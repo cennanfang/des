@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redbird.wehelp.dao.RoleDao">
+	
+	<select id="find" parameterType="int" resultMap="findRoleResult">
+        select * from w_role where id=#{id}
+    </select>
+    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+    <resultMap type="com.redbird.wehelp.pojo.Role" id="findRoleResult">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+    </resultMap>
+	
+	<insert id="add" parameterType="com.redbird.wehelp.pojo.Role" flushCache="true">  
+   		INSERT INTO w_role (name, description) VALUES (#{name}, #{description})  
+	</insert>  
+	
+	<update id="update" parameterType="com.redbird.wehelp.pojo.Role">  
+    	UPDATE w_role SET name=#{name}, description=#{description} WHERE id=#{id}  
+	</update>  
+	
+	<delete id="delete" parameterType="int">  
+    	DELETE FROM w_role WHERE id=#{id}  
+	</delete>  
+</mapper>

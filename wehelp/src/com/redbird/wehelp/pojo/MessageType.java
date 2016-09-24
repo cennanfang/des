@@ -8,19 +8,19 @@ package com.redbird.wehelp.pojo;
 public class MessageType extends BasePojo{
 
 	// ¿‡–Õ√˚≥∆
-	private String typeName;
+	private String name;
 	
 	@Override
 	public String toString() {
-		return typeName;
+		return name;
 	}
 
-	public String getTypeName() {
-		return typeName;
+	public String getName() {
+		return name;
 	}
 
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

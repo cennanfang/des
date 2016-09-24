@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.redbird.wehelp.dao.MessageDao">
 	
-	<select id="find" parameterType="int" resultMap="MessageResultMap">
+	<select id="find" parameterType="int" resultMap="findMessageResult">
         select * from w_message m, w_message_type t, w_user u where m.id=#{id} and m.type_id=t.id and u.id =m.user_id
     </select>
     <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
-    <resultMap type="com.redbird.wehelp.pojo.Message" id="MessageResultMap">
+    <resultMap type="com.redbird.wehelp.pojo.Message" id="findMessageResult">
         <id property="id" column="id"/>
         <result property="content" column="content"/>
         <result property="contacts" column="contacts"/>
@@ -14,7 +14,7 @@
         <result property="publishedDate" column="published_date"/>
         <association property="messageType" javaType="com.redbird.wehelp.pojo.MessageType">
             <id property="id" column="id"/>
-            <result property="typeName" column="type_name"/>
+            <result property="name" column="name"/>
         </association>
         <association property="user" javaType="com.redbird.wehelp.pojo.User">
             <id property="id" column="id"/>

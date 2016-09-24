@@ -6,5 +6,6 @@
 		<mapper resource="com/redbird/wehelp/dao/userDao.xml" />
 		<mapper resource="com/redbird/wehelp/dao/messageDao.xml" />
 		<mapper resource="com/redbird/wehelp/dao/messageTypeDao.xml" />
+		<mapper resource="com/redbird/wehelp/dao/userRoleDao.xml" />
 	</mappers>
 </configuration>

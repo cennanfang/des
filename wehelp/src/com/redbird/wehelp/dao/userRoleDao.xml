@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redbird.wehelp.dao.UserRoleDao">
+
+	<select id="findByUserId" parameterType="int" resultMap="findUserRoleResult" resultType="java.util.List">
+		select * from w_user_role ur, w_role r, w_user u where ur.user_id=#{userId} and ur.role_id=r.id and ur.user_id=u.id
+	</select>
+	
+	<select id="find" parameterType="int" resultMap="findUserRoleResult">
+		select * from w_user_role ur, w_role r, w_user u where ur.id=#{id} and ur.role_id=r.id and ur.user_id=u.id
+	</select>
+	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+	<resultMap type="com.redbird.wehelp.pojo.UserRole" id="findUserRoleResult">
+		<id property="id" column="id" />
+		<association property="user" javaType="com.redbird.wehelp.pojo.User">
+			<id property="id" column="id" />
+			<result property="userName" column="user_name" />
+			<result property="password" column="password" />
+			<result property="nickName" column="nick_name" />
+			<result property="sex" column="sex" />
+			<result property="age" column="age" />
+			<result property="phone" column="phone" />
+			<result property="email" column="email" />
+			<result property="address" column="address" />
+			<result property="createDate" column="create_date" />
+		</association>
+		<association property="role" javaType="com.redbird.wehelp.pojo.Role">
+			<id property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="description" column="description" />
+		</association>
+	</resultMap>
+
+	<insert id="add" parameterType="com.redbird.wehelp.pojo.UserRole"
+		flushCache="true">
+		INSERT INTO w_user_role (user_id, role_id) VALUES (#{user.id}, #{role.id})
+	</insert>
+
+	<update id="update" parameterType="com.redbird.wehelp.pojo.UserRole">
+		UPDATE w_user_role SET user_id=#{user.id}, role_id=#{role.id} WHERE id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM w_user_role WHERE id=#{id}
+	</delete>
+</mapper>

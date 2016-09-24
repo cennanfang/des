@@ -30,7 +30,7 @@ public class Message extends BasePojo{
 	@Override
 	public String toString() {
 		String msg = user.getNickName() + " "
-				   + messageType.getTypeName() 
+				   + messageType.getName() 
 				   + ":" + content + " 联系方式 "
 				   + contacts;
 		return msg;
