@@ -35,7 +35,7 @@
 	</bean>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="jdbcDataSource" />
-		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<property name="configLocation" value="classpath:com/redbird/wehelp/config/mybatis-config.xml"></property>
 	</bean>
 	<!-- 配置数据源 END -->
 
@@ -98,7 +98,7 @@
 
 	<!-- 缓存管理器 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml" />
+		<property name="cacheManagerConfigFile" value="classpath:com/redbird/wehelp/config/shiro-ehcache.xml" />
 	</bean>
 	<!-- 安全控制配置 END -->
 </beans>
