@@ -9,7 +9,8 @@ public class Role extends BasePojo{
 
 	// 角色名称
 	private String name;
-	
+	// 是否可用,1：可用，0不可用
+	private char available;
 	// 角色说明
 	private String description;
 	
@@ -32,6 +33,14 @@ public class Role extends BasePojo{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public char getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(char available) {
+		this.available = available;
 	}
 	
 }

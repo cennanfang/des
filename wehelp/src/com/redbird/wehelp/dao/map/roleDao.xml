@@ -9,15 +9,16 @@
     <resultMap type="com.redbird.wehelp.pojo.Role" id="findRoleResult">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="available" column="available"/>
         <result property="description" column="description"/>
     </resultMap>
 	
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.Role" flushCache="true">  
-   		INSERT INTO w_role (name, description) VALUES (#{name}, #{description})  
+   		INSERT INTO w_role (name, available, description) VALUES (#{name}, #{available}, #{description})  
 	</insert>  
 	
 	<update id="update" parameterType="com.redbird.wehelp.pojo.Role">  
-    	UPDATE w_role SET name=#{name}, description=#{description} WHERE id=#{id}  
+    	UPDATE w_role SET name=#{name}, available=#{available}, description=#{description} WHERE id=#{id}  
 	</update>  
 	
 	<delete id="delete" parameterType="int">  

@@ -18,6 +18,8 @@
 		<id property="id" column="id" />
 		<result property="userName" column="user_name" />
 		<result property="password" column="password" />
+		<result property="salt" column="salt" />
+		<result property="locked" column="locked" />
 		<result property="nickName" column="nick_name" />
 		<result property="sex" column="sex" />
 		<result property="age" column="age" />
@@ -29,14 +31,14 @@
 
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.User"
 		flushCache="true">
-		INSERT INTO w_user ( user_name, password, nick_name, sex, age, phone, email,
+		INSERT INTO w_user ( user_name, password, salt, locked, nick_name, sex, age, phone, email,
 		address)
 		VALUES
-		(#{userName},#{password},#{nickName},#{sex},#{age},#{phone},#{email},#{address})
+		(#{userName},#{password},#{salt},#{locked},#{nickName},#{sex},#{age},#{phone},#{email},#{address})
 	</insert>
 
 	<update id="update" parameterType="com.redbird.wehelp.pojo.User">
-		UPDATE w_user SET user_name=#{userName}, password=#{password},
+		UPDATE w_user SET user_name=#{userName}, password=#{password}, salt=#{salt}, locked=#{locked}
 		nick_name=#{nickName}, sex=#{sex},
 		age=#{age}, phone=#{phone}, email=#{email}, address=#{address} WHERE id=#{id}
 	</update>

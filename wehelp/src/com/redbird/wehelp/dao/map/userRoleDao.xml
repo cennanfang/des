@@ -16,6 +16,8 @@
 			<id property="id" column="id" />
 			<result property="userName" column="user_name" />
 			<result property="password" column="password" />
+			<result property="salt" column="salt" />
+			<result property="locked" column="locked" />
 			<result property="nickName" column="nick_name" />
 			<result property="sex" column="sex" />
 			<result property="age" column="age" />
@@ -27,6 +29,7 @@
 		<association property="role" javaType="com.redbird.wehelp.pojo.Role">
 			<id property="id" column="id" />
 			<result property="name" column="name" />
+			<result property="available" column="available" />
 			<result property="description" column="description" />
 		</association>
 	</resultMap>

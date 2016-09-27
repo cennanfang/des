@@ -19,6 +19,14 @@ public class Permission extends BasePojo {
 	/** 所属角色编号 **/
 	private int roleId;
 
+	// 是否可用,1：可用，0不可用
+	private char available;
+
+	@Override
+	public String toString() {
+		return token + ":" + url + "  " + description;
+	}
+
 	public String getToken() {
 		return token;
 	}
@@ -49,6 +57,14 @@ public class Permission extends BasePojo {
 
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
+	}
+
+	public char getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(char available) {
+		this.available = available;
 	}
 
 }

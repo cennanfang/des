@@ -1,23 +1,16 @@
 package com.redbird.wehelp.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户信息类
- * 
  * @author c
  *
  */
-public class User extends BasePojo {
-
+public class ActiveUser extends BasePojo {
 	// 用户名
 	private String userName;
-	// 密码
-	private String password;
-	// 盐
-	private String salt;
-	// 账号是否锁定，1：锁定，0未锁定
-	private char locked;
 	// 昵称
 	private String nickName;
 	// 性别 男人 1 女人 2 其他 0
@@ -32,12 +25,14 @@ public class User extends BasePojo {
 	private String address;
 	// 注册日期
 	private Date registerDate;
-
+	// 用户所拥有的角色
+	private List<Permission> permissions;
+	
 	@Override
 	public String toString() {
 		return userName + " " + nickName;
 	}
-
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -94,14 +89,6 @@ public class User extends BasePojo {
 		this.nickName = nickName;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -110,19 +97,11 @@ public class User extends BasePojo {
 		this.email = email;
 	}
 
-	public String getSalt() {
-		return salt;
+	public List<Permission> getPermissions() {
+		return permissions;
 	}
 
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-
-	public char getLocked() {
-		return locked;
-	}
-
-	public void setLocked(char locked) {
-		this.locked = locked;
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
 	}
 }

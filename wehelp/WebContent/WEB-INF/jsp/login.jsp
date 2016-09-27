@@ -7,10 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form  method="post" action="/wehelp/user/login">
-		用户名：<input name="userName" /> <br/>
-		密码：<input name="nickName" /> <br/>
-		<input type="submit" value="登陆">
+	<h1>user login</h1>
+	<form action="login" method="post">
+		username:<input type="text" name="userName">
+		<p>
+			password:<input type="password" name="password">
+		<p>
+			${msg } 
+			<input type="submit" value="submit">
 	</form>
 </body>
 </html>

@@ -18,7 +18,7 @@ import com.redbird.wehelp.util.DataSender;
  * @author c
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
 
 	/**
@@ -28,7 +28,7 @@ public class UserController {
 	 * @param response
 	 * @throws IOException
 	 */
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="/xxxx", method=RequestMethod.POST)
 	public void login(@ModelAttribute("user") User user, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println(user.getUserName());
 		System.out.println(user.getNickName());

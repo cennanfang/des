@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author c
  */
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/")
 public class IndexController {
 
-	@RequestMapping("/hello")
-	public String hello() {
-		return "hello";
-	}
+	@RequestMapping("index")  
+    public String index() {  
+        System.out.println("µÇÂ¼³É¹¦");  
+        return "home";  
+    }  
 }

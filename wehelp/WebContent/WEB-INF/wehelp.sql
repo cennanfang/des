@@ -4,12 +4,14 @@ CREATE TABLE `w_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,  
   `user_name` varchar(20) NOT NULL unique, 
   `password` varchar(20) NOT NULL,
-  `nick_name` varchar(20),
+  `salt` varchar(64) DEFAULT NULL COMMENT '盐',  
+  `locked` char(1) DEFAULT NULL COMMENT '账号是否锁定，1：锁定，0未锁定',  
+  `nick_name` varchar(20) DEFAULT NULL, 
   `sex` int(2) DEFAULT '0',  
   `age` int(3) DEFAULT '0', 
-  `phone` int(11),
-  `email`  varchar(30),  
-  `address`  varchar(30),
+  `phone` varchar(11) DEFAULT NULL,
+  `email`  varchar(30) DEFAULT NULL,  
+  `address`  varchar(30) DEFAULT NULL,
   `register_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
   PRIMARY KEY (`id`)  
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;  
@@ -19,6 +21,7 @@ DROP TABLE IF EXISTS `w_message_type`;
 CREATE TABLE `w_message_type` (  
   `id` int(11) NOT NULL AUTO_INCREMENT, 
   `name` varchar(20) NOT NULL, 
+  `description` varchar(50) NOT NULL, 
   PRIMARY KEY (`id`)  
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;  
 
@@ -42,7 +45,8 @@ DROP TABLE IF EXISTS `w_role`;
 CREATE TABLE `w_role` (  
   `id` int(11) NOT NULL AUTO_INCREMENT, 
   `name` varchar(20) NOT NULL, 
-  `description` varchar(50), 
+  `available` char(1) DEFAULT NULL COMMENT '是否可用,1：可用，0不可用',
+  `description` varchar(50) DEFAULT NULL, 
   PRIMARY KEY (`id`)  
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;  
 
@@ -53,11 +57,11 @@ CREATE TABLE `w_permission` (
   `role_id` int(11), 
   `token` varchar(20) NOT NULL, 
   `url` varchar(20) NOT NULL, 
-  `description` varchar(50), 
+  `available` char(1) DEFAULT NULL COMMENT '是否可用,1：可用，0不可用',
+  `description` varchar(50) DEFAULT NULL, 
   foreign key(role_id) references w_role(id),
   PRIMARY KEY (`id`)  
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;  
-
 
 DROP TABLE IF EXISTS `w_user_role`;  
 CREATE TABLE `w_user_role` (  
@@ -70,14 +74,14 @@ CREATE TABLE `w_user_role` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;  
 
 
-insert into w_user(user_name, password, nick_name, sex, age, phone, email, address)
-values('rose', 'rose123', '玫瑰', 2, 18, 13888888888, 'meigui@qq.com', '华盛顿');
-insert into w_user(user_name, password, nick_name, sex, age, phone, email, address)
-values('jack', 'jack123', '杰哥', 1, 18, 13999999999, 'jiege@qq.com', '地狱');
-insert into w_user(user_name, password, nick_name, sex, age, phone, email, address)
-values('zhangsan', 'zhangsan123', '张三', 1, 20, 133333333333, 'zhangsan@qq.com', '北京');
-insert into w_user(user_name, password, nick_name, sex, age, phone, email, address)
-values('lisi', 'lisi123', '李四', 1, 19, 13666666666, 'lisi@qq.com', '天堂');
+insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
+values('rose', 'rose123', 0, '玫瑰', 2, 18, '13888888888', 'meigui@qq.com', '华盛顿');
+insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
+values('jack', 'jack123', 0, '杰哥', 1, 18, '13999999999', 'jiege@qq.com', '地狱');
+insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
+values('zhangsan', 'zhangsan123', 0, '张三', 1, 20, '133333333333', 'zhangsan@qq.com', '北京');
+insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
+values('lisi', 'lisi123', 0, '李四', 1, 19, '13666666666', 'lisi@qq.com', '天堂');
 
 insert into w_message_type(name) values('人找车');
 insert into w_message_type(name) values('车找人');
@@ -87,8 +91,14 @@ insert into w_message_type(name) values('出售');
 insert into w_message_type(name) values('购买');
 insert into w_message_type(name) values('其他');
 
-insert into w_role(name, description) values('普通用户', '普通使用用户所拥有的权限');
-insert into w_role(name, description) values('管理员', '管理系统用户所拥有的权限');
+insert into w_role(name, available, description) values('普通用户', 1, '普通使用用户所拥有的权限');
+insert into w_role(name, available, description) values('管理员', 1, '管理系统用户所拥有的权限');
+
+insert into w_permission(role_id, token, url, available, description) values(1, 'home', '/home', 1, '所有用户有登录的权限');
+insert into w_permission(role_id, token, url, available, description) values(1, 'login', '/login', 1, '所有用户有登录的权限');
+insert into w_permission(role_id, token, url, available, description) values(2, 'home', '/home', 1, '所有用户有登录的权限');
+insert into w_permission(role_id, token, url, available, description) values(2, 'login', '/login', 1, '所有用户有登录的权限');
+insert into w_permission(role_id, token, url, available, description) values(2, 'admin', '/admin', 1, '超级管理权限');
 
 insert into w_user_role(user_id, role_id) values(1, 1);
 insert into w_user_role(user_id, role_id) values(1, 2);

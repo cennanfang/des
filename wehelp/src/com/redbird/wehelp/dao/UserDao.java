@@ -23,5 +23,5 @@ public interface UserDao extends BaseDao<User>{
 	 * @param pageSize
 	 * @return
 	 */
-	public PageModel findPageModel(int pageNo, int pageSize);
+	public PageModel<User> findPageModel(int pageNo, int pageSize);
 }

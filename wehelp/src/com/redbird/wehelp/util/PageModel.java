@@ -1,18 +1,16 @@
 package com.redbird.wehelp.util;
 
-import java.util.List;
-
-import com.redbird.wehelp.pojo.BasePojo;  
+import java.util.List;  
 
 /** 
  * 封装分页信息 
  * @author Administrator 
  * 
  */  
-public class PageModel {  
+public class PageModel<T> {  
   
     //结果集  
-    private List<BasePojo> list;  
+    private List<T> list;  
       
     //查询记录数  
     private int totalRecords;  
@@ -69,11 +67,11 @@ public class PageModel {
         return getTotalPages();  
     }  
       
-    public List<BasePojo> getList() {  
+    public List<T> getList() {  
         return list;  
     }  
   
-    public void setList(List<BasePojo> list) {  
+    public void setList(List<T> list) {  
         this.list = list;  
     }  
   
