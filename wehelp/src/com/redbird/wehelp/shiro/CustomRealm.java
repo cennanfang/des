@@ -13,6 +13,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.redbird.wehelp.exception.UserLoginException;
 import com.redbird.wehelp.pojo.ActiveUser;
 import com.redbird.wehelp.pojo.Permission;
 import com.redbird.wehelp.pojo.User;
@@ -33,7 +34,6 @@ public class CustomRealm extends AuthorizingRealm {
 	public void setName(String name) {
 		super.setName("customRealm");
 	}
-	
 
 	// 用于认证
 	@Override
@@ -43,41 +43,25 @@ public class CustomRealm extends AuthorizingRealm {
 		String userName = (String) token.getPrincipal();
 		User user = null;
 		// 第二步：根据用户输入的userCode从数据库查询
-		try {
-			user = userService.findByUserName(userName);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		user = userService.findByUserName(userName);
 		// 如果查询不到返回null
 		if (user == null) {
-			return null;
+			throw new UserLoginException("用户名或者密码错误。");
 		}
-
 		// 从数据库查询加密后密码
 		String password = user.getPassword();
-		// 盐
-//		String salt = user.getSalt();
+		
 		ActiveUser activeUser = UserUtils.userCopyToActiveUser(user);
-
 		// 根据用户id取出菜单
-		List<Permission> permissions = null;
-		try {
-			permissions = userService.findPermissionsByUserId(user.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<Permission> permissions = userService.findPermissionsByUserId(user.getId());
 		activeUser.setPermissions(permissions);
-
 		// 如果查询到返回认证信息AuthenticationInfo
-//		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(activeUser, password,
-//				ByteSource.Util.bytes(salt), this.getName());
-		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(activeUser, password, this.getName());
+		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(activeUser, password,
+				this.getName());
 
 		return authenticationInfo;
 	}
 
-	
 	// 用于授权
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -89,11 +73,7 @@ public class CustomRealm extends AuthorizingRealm {
 		// 根据身份信息获取权限信息
 		// 从数据库获取到权限数据
 		List<Permission> permissions = null;
-		try {
-			permissions = userService.findPermissionsByUserId(activeUser.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		permissions = userService.findPermissionsByUserId(activeUser.getId());
 		List<String> meus = new ArrayList<String>();
 		if (permissions != null) {
 			// 将数据库查到权限标签符放到集合
@@ -117,14 +97,12 @@ public class CustomRealm extends AuthorizingRealm {
 		super.clearCache(principals);
 	}
 
-
 	public UserServiceImpl getUserService() {
 		return userService;
 	}
 
-
 	public void setUserService(UserServiceImpl userService) {
 		this.userService = userService;
 	}
-	
+
 }

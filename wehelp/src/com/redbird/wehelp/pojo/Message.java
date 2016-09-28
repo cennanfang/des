@@ -9,6 +9,8 @@ import java.util.Date;
  */
 public class Message extends BasePojo{
 
+	private static final long serialVersionUID = -435864400662153843L;
+
 	// ÄÚÈİ
 	private String content;
 	

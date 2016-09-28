@@ -7,6 +7,9 @@ package com.redbird.wehelp.pojo;
  *
  */
 public class Permission extends BasePojo {
+	
+	private static final long serialVersionUID = 3032341793085702601L;
+
 	/** token **/
 	private String token;
 

@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class User extends BasePojo {
 
+	private static final long serialVersionUID = 2823502811911931186L;
 	// ÓÃ»§Ãû
 	private String userName;
 	// ÃÜÂë

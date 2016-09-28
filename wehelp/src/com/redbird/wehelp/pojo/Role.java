@@ -7,6 +7,7 @@ package com.redbird.wehelp.pojo;
  */
 public class Role extends BasePojo{
 
+	private static final long serialVersionUID = -1113470115751097957L;
 	// 角色名称
 	private String name;
 	// 是否可用,1：可用，0不可用

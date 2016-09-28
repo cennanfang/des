@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `w_user`;
 CREATE TABLE `w_user` (  
   `id` int(11) NOT NULL AUTO_INCREMENT,  
   `user_name` varchar(20) NOT NULL unique, 
-  `password` varchar(20) NOT NULL,
+  `password` varchar(128) NOT NULL,
   `salt` varchar(64) DEFAULT NULL COMMENT '盐',  
   `locked` char(1) DEFAULT NULL COMMENT '账号是否锁定，1：锁定，0未锁定',  
   `nick_name` varchar(20) DEFAULT NULL, 
@@ -75,13 +75,18 @@ CREATE TABLE `w_user_role` (
 
 
 insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
-values('rose', 'rose123', 0, '玫瑰', 2, 18, '13888888888', 'meigui@qq.com', '华盛顿');
+values('rose', '000000', 0, '玫瑰', 2, 18, '13888888888', 'meigui@qq.com', '华盛顿');
 insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
-values('jack', 'jack123', 0, '杰哥', 1, 18, '13999999999', 'jiege@qq.com', '地狱');
+values('jack', '000000', 0, '杰哥', 1, 18, '13999999999', 'jiege@qq.com', '地狱');
 insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
-values('zhangsan', 'zhangsan123', 0, '张三', 1, 20, '133333333333', 'zhangsan@qq.com', '北京');
+values('zhangsan', '000000', 0, '张三', 1, 20, '133333333333', 'zhangsan@qq.com', '北京');
 insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
-values('lisi', 'lisi123', 0, '李四', 1, 19, '13666666666', 'lisi@qq.com', '天堂');
+values('lisi', '000000', 0, '李四', 1, 19, '13666666666', 'lisi@qq.com', '天堂');
+
+update w_user set password='483795953644107118hSWGVeDaY3DR3tqOmc0CjA==', salt='[B@6d06d69c' where id = 1;
+update w_user set password='99624111433583888GA5w/JyJ+czpf9Ka1pe13g==', salt='[B@7852e922' where id = 2;
+update w_user set password='464612057111437064qnLNXxHoB3Fs76NqSZTdoA==', salt='[B@4e25154f' where id = 3;
+update w_user set password='6359703777827177Pz6aP2/Xz+KNpLyS8Z2yAg==', salt='[B@70dea4e' where id = 4;
 
 insert into w_message_type(name) values('人找车');
 insert into w_message_type(name) values('车找人');

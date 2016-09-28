@@ -6,7 +6,8 @@ package com.redbird.wehelp.pojo;
  *
  */
 public class MessageType extends BasePojo{
-
+	
+	private static final long serialVersionUID = 8829033850039942630L;
 	// ÀàĞÍÃû³Æ
 	private String name;
 	// ÃèÊö

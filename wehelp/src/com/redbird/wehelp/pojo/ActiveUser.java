@@ -9,6 +9,8 @@ import java.util.List;
  *
  */
 public class ActiveUser extends BasePojo {
+	
+	private static final long serialVersionUID = -6937820421163866201L;
 	// ”√ªß√˚
 	private String userName;
 	// Í«≥∆
