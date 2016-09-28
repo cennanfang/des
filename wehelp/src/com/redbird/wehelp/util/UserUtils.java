@@ -15,6 +15,7 @@ public class UserUtils {
 	 * @param user
 	 * @return
 	 */
+	synchronized
 	public static ActiveUser userCopyToActiveUser(User user) {
 		ActiveUser activeUser = new ActiveUser();
 		activeUser.setId(user.getId());

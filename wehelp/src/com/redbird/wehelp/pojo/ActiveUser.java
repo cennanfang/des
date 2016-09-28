@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 用户信息类
+ * 在线用户
  * @author c
  *
  */
