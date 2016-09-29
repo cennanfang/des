@@ -12,6 +12,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import com.redbird.wehelp.exception.UserLoginException;
 import com.redbird.wehelp.pojo.ActiveUser;
@@ -56,9 +57,8 @@ public class CustomRealm extends AuthorizingRealm {
 		List<Permission> permissions = userService.findPermissionsByUserId(user.getId());
 		activeUser.setPermissions(permissions);
 		// 如果查询到返回认证信息AuthenticationInfo
-		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(activeUser, password,
-				this.getName());
-
+		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(activeUser, password,  
+                ByteSource.Util.bytes(user.getSalt()), this.getName());  
 		return authenticationInfo;
 	}
 

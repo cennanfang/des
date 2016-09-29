@@ -50,11 +50,8 @@ public class PasswordEncryption {
 
 	/**
 	 * 检查密码
-	 * 
-	 * @param inputPasswd
-	 *            用户输入的密码
-	 * @param storePasswd
-	 *            已存储的密码
+	 * @param inputPasswd 用户输入的密码
+	 * @param storePasswd 已存储的密码
 	 * @return true:通过检查,false:未通过
 	 * @throws UnsupportedEncodingException 
 	 */
@@ -67,11 +64,8 @@ public class PasswordEncryption {
 
 	/**
 	 * 将客户输入的密码加密
-	 * 
-	 * @param inputPasswd
-	 *            客户输入的密码
-	 * @param salt
-	 *            盐
+	 * @param inputPasswd 客户输入的密码
+	 * @param salt 盐
 	 * @return 加密后的字符串
 	 * @throws UnsupportedEncodingException
 	 */
@@ -82,10 +76,7 @@ public class PasswordEncryption {
 		md.update(salt);
 		md.update(inputPasswd.getBytes("UTF-8"));
 		byte[] bys = md.digest();
-		for (byte c : salt) {
-			pwd += c;
-		}
-		System.out.println("salt to pwd = " + pwd);
+		pwd += byteArrayToString(salt);
 		pwd += b64Encoder.encode(bys);
 		return pwd;
 	}
@@ -106,6 +97,22 @@ public class PasswordEncryption {
 		return salt;
 	}
 	
+	/**
+	 * 将btye[]转为String类型
+	 * @param bytes
+	 * @return
+	 */
+	public static String byteArrayToString(byte[] bytes) {
+		String str = "";
+		if(bytes != null) {
+			for (byte b : bytes) {
+				char c = (char)b;
+				str += c;
+			}
+		}
+		return str;
+	}
+	
 	
 	public static void main(String args[]) {
 		
@@ -114,10 +121,6 @@ public class PasswordEncryption {
 		byte[] gensalt2 = PasswordEncryption.generateSaltOfASCII(8);
 		byte[] gensalt3 = PasswordEncryption.generateSaltOfASCII(8);
 		byte[] gensalt4 = PasswordEncryption.generateSaltOfASCII(8);
-		System.out.println("gensalt=" + gensalt);
-		System.out.println("gensalt2=" + gensalt2);
-		System.out.println("gensalt3=" + gensalt3);
-		System.out.println("gensalt4=" + gensalt4);
 		
 		try {
 			String storePw = PasswordEncryption.encryptPasswd(inPw, gensalt);
