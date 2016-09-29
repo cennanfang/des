@@ -72,13 +72,13 @@ public class CustomRealm extends AuthorizingRealm {
 
 		// 根据身份信息获取权限信息
 		// 从数据库获取到权限数据
-		List<Permission> permissions = null;
-		permissions = userService.findPermissionsByUserId(activeUser.getId());
+		List<Permission> permissions = activeUser.getPermissions();
 		List<String> meus = new ArrayList<String>();
 		if (permissions != null) {
 			// 将数据库查到权限标签符放到集合
 			for (Permission permission : permissions) {
 				meus.add(permission.getUrl());
+				System.out.println(activeUser.getUserName() + ":" + permission.getUrl());
 			}
 		}
 

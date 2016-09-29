@@ -54,6 +54,18 @@
 		<property name="cacheManager" ref="cacheManager" />
 	</bean>
 
+	<!-- 使用注解方式权限控制 start -->
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<!-- 使用注解方式权限控制 end -->
+
 	<!-- 自定义Realm -->
 	<bean id="customRealm" class="com.redbird.wehelp.shiro.CustomRealm">
 		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
@@ -62,26 +74,28 @@
 	</bean>
 
 	<!-- 凭证匹配器 -->
-	<!-- <bean id="credentialsMatcher"
-		class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-		<property name="hashAlgorithmName" value="md5" />
-		<property name="hashIterations" value="1" />
-	</bean> -->
+	<!-- <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher"> 
+		<property name="hashAlgorithmName" value="md5" /> <property name="hashIterations" 
+		value="1" /> </bean> -->
 	<!-- 凭证匹配器 -->
 	<bean id="credentialsMatcher" class="com.redbird.wehelp.shiro.CustomCredentialsMatcher">
 	</bean>
 
 	<!-- 缓存管理器 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManagerConfigFile" value="classpath:com/redbird/wehelp/config/shiro-ehcache.xml" />
+		<property name="cacheManagerConfigFile"
+			value="classpath:com/redbird/wehelp/config/shiro-ehcache.xml" />
 	</bean>
 	<!-- 安全控制配置 END -->
-	
-	<!-- 会话管理器 -->  
-    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">  
-        <!-- session的失效时长，单位毫秒 -->  
-        <property name="globalSessionTimeout" value="600000"/>  
-        <!-- 删除失效的session -->  
-        <property name="deleteInvalidSessions" value="true"/>  
-    </bean>  
+
+	<!-- Shiro生命周期处理器 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
 </beans>
