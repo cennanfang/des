@@ -100,9 +100,7 @@ insert into w_role(name, available, description) values('普通用户', 1, '普通使用
 insert into w_role(name, available, description) values('管理员', 1, '管理系统用户所拥有的权限');
 
 insert into w_permission(role_id, token, url, available, description) values(1, 'home', '/home', 1, '所有用户有登录的权限');
-insert into w_permission(role_id, token, url, available, description) values(1, 'login', '/login', 1, '所有用户有登录的权限');
 insert into w_permission(role_id, token, url, available, description) values(2, 'home', '/home', 1, '所有用户有登录的权限');
-insert into w_permission(role_id, token, url, available, description) values(2, 'login', '/login', 1, '所有用户有登录的权限');
 insert into w_permission(role_id, token, url, available, description) values(2, 'admin', '/admin', 1, '超级管理权限');
 
 insert into w_user_role(user_id, role_id) values(1, 1);

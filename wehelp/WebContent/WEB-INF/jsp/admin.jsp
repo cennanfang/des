@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-home.jsp:
+admin.jsp:
 ${msg } 
 	<br/>
 	<br/>
-	<a href="admin">调转到admin.jsp</a>
+	<a href="home">调转到home.jsp</a>
 </body>
 </html>

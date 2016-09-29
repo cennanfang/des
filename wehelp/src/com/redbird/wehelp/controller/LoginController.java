@@ -30,16 +30,26 @@ public class LoginController {
 		// 跳转到/page/login.jsp页面
 		return "login";
 	}
+	/***
+	 * 跳转到主页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/home")
+	public String home() {
+		// 跳转到/page/login.jsp页面
+		return "home";
+	}
 	
 	/**
 	 * 登陆验证和调转
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value = "/home")
-	public String home(@ModelAttribute("user") User user) {
-		String username = user.getUserName();
-		String password = user.getPassword();
+	@RequestMapping(value = "/doLogin")
+	public String doLogin(@ModelAttribute("user") User user) {
+		String username = user.getUserName().trim();
+		String password = user.getPassword().trim();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password); 
         Subject currentUser = SecurityUtils.getSubject();   
         // 先登出
@@ -49,9 +59,9 @@ public class LoginController {
         	currentUser.login(token);
         } catch(AuthenticationException e) {
         	e.printStackTrace();
-        	return "login";
+        	return "redirect:login";
         }
 		// 登录成功后会跳转到successUrl配置的链接，不用管下面返回的链接。
-		return "home";
+		return "redirect:home";
 	}
 }

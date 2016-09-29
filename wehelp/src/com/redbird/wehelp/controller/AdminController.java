@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/")
-public class IndexController {
+public class AdminController {
 
-	@RequestMapping("index")  
-    public String index() {  
-        System.out.println("登录成功");  
-        return "home";  
+	@RequestMapping("admin")  
+    public String admin() {  
+        System.out.println("进入admin");  
+        return "admin";  
     }  
 }
