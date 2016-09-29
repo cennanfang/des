@@ -4,7 +4,7 @@ CREATE TABLE `w_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,  
   `user_name` varchar(20) NOT NULL unique, 
   `password` varchar(64) NOT NULL,
-  `salt` varchar(64) DEFAULT NULL COMMENT '盐',  
+  `salt` varchar(32) DEFAULT NULL COMMENT '盐',  
   `locked` char(1) DEFAULT NULL COMMENT '账号是否锁定，1：锁定，0未锁定',  
   `nick_name` varchar(20) DEFAULT NULL, 
   `sex` int(2) DEFAULT '0',  
@@ -83,10 +83,10 @@ values('zhangsan', '000000', 0, '张三', 1, 20, '133333333333', 'zhangsan@qq.com'
 insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
 values('lisi', '000000', 0, '李四', 1, 19, '13666666666', 'lisi@qq.com', '天堂');
 
-update w_user set password='2+/%!ylEdH2BBI/WRDKScE7ZE4CZyg==', salt='2+/%!ylE' where id = 1;
-update w_user set password='Ch}&NHirfWD5Sg6x1So9aVLxggOzHw==', salt='Ch}&NHir' where id = 2;
-update w_user set password='p9x}IuO3OQpaJ3l6GvLRFisTHW15GA==', salt='p9x}IuO3' where id = 3;
-update w_user set password='lQVqb6-)Op6jaNWj8K1tLUbjI2nHEA==', salt='lQVqb6-)' where id = 4;
+update w_user set password='63gIICNACnVW5JEmSwfwJg==', salt='@P06|O,+' where id = 1;
+update w_user set password='jYxoPJnVK3IvTS782P8kxA==', salt='&4Zv|Ne=' where id = 2;
+update w_user set password='WYdHxIutKDYbpRIsXTLLng==', salt='wt@P!L&p' where id = 3;
+update w_user set password='nB+m+gsgOOHU3Y+Nw93E0g==', salt="zXo'DP,$" where id = 4;
 
 insert into w_message_type(name) values('人找车');
 insert into w_message_type(name) values('车找人');

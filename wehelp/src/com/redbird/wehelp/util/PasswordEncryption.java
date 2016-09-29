@@ -1,5 +1,6 @@
 package com.redbird.wehelp.util;
 
+import java.io.IOException;
 /**
  * 
  * gensalt=[B@6d06d69c
@@ -71,13 +72,11 @@ public class PasswordEncryption {
 	 */
 	synchronized public static String encryptPasswd(String inputPasswd, byte[] salt)
 			throws UnsupportedEncodingException {
-		String pwd = "";
 		md.reset();
 		md.update(salt);
 		md.update(inputPasswd.getBytes("UTF-8"));
 		byte[] bys = md.digest();
-		pwd += byteArrayToString(salt);
-		pwd += b64Encoder.encode(bys);
+		String pwd = b64Encoder.encode(bys);
 		return pwd;
 	}
 
@@ -102,7 +101,7 @@ public class PasswordEncryption {
 	 * @param bytes
 	 * @return
 	 */
-	public static String byteArrayToString(byte[] bytes) {
+	private static String byteArrayToString(byte[] bytes) {
 		String str = "";
 		if(bytes != null) {
 			for (byte b : bytes) {
@@ -127,10 +126,14 @@ public class PasswordEncryption {
 			String storePw2 = PasswordEncryption.encryptPasswd(inPw, gensalt2);
 			String storePw3 = PasswordEncryption.encryptPasswd(inPw, gensalt3);
 			String storePw4 = PasswordEncryption.encryptPasswd(inPw, gensalt4);
-			System.out.println("加密后：" + storePw);
-			System.out.println("加密后：" + storePw2);
-			System.out.println("加密后：" + storePw3);
-			System.out.println("加密后：" + storePw4);
+			System.out.println("加密后：" + storePw 
+					+ "| salt:" + byteArrayToString(gensalt));
+			System.out.println("加密后：" + storePw2
+					+ "| salt:" + byteArrayToString(gensalt2));
+			System.out.println("加密后：" + storePw3
+					+ "| salt:" + byteArrayToString(gensalt3));
+			System.out.println("加密后：" + storePw4
+					+ "| salt:" + byteArrayToString(gensalt4));
 			
 			boolean isOk = PasswordEncryption.checkPassword(inPw, storePw, gensalt);
 			boolean isOk2 = PasswordEncryption.checkPassword(inPw, storePw2, gensalt2);
@@ -140,7 +143,7 @@ public class PasswordEncryption {
 			System.out.println("isOk2=" + isOk2);
 			System.out.println("isOk3=" + isOk3);
 			System.out.println("isOk4=" + isOk4);
-		} catch (UnsupportedEncodingException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
