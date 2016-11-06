@@ -55,6 +55,9 @@ public class CustomRealm extends AuthorizingRealm {
 		ActiveUser activeUser = UserUtils.userCopyToActiveUser(user);
 		// 根据用户id取出菜单
 		List<Permission> permissions = userService.findPermissionsByUserId(user.getId());
+		for (Permission permission : permissions) {
+			System.out.println(activeUser.getNickName() + ":" + permission);
+		}
 		activeUser.setPermissions(permissions);
 		// 如果查询到返回认证信息AuthenticationInfo
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(activeUser, password,  

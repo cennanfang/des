@@ -41,7 +41,7 @@
 				<!--商品查询需要商品查询权限 ，取消url拦截配置，使用注解授权方式 -->
 				<!-- /items/queryItems.action = perms[item:query] -->
 				<!-- /** = authc 所有url都必须认证通过才可以访问 -->
-				/**=authc
+				/** = authc
 
 			</value>
 		</property>

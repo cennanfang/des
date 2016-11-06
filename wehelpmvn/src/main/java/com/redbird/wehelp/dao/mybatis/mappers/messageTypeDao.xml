@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redbird.wehelp.dao.MessageTypeDao">
+	<select id="find" parameterType="int" resultType="com.redbird.wehelp.pojo.MessageType">
+		select 
+		id as id,
+		name as name,
+		description as description
+		from w_message_type where id=#{id}
+	</select>
+	
+	<insert id="add" parameterType="com.redbird.wehelp.pojo.MessageType" flushCache="true">  
+   		INSERT INTO w_message_type (name, description) VALUES (#{name}, #{description})  
+	</insert>  
+	
+	<update id="update" parameterType="com.redbird.wehelp.pojo.MessageType">  
+    	UPDATE w_message_type SET name=#{name} description=#{description} WHERE id=#{id}  
+	</update>  
+	
+	<delete id="delete" parameterType="int">  
+    	DELETE FROM w_message_type WHERE id=#{id}  
+	</delete>  
+</mapper>
