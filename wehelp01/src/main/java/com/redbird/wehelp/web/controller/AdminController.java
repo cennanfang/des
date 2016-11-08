@@ -15,7 +15,6 @@ public class AdminController {
 	@RequestMapping("/admin")  
 	@RequiresPermissions(value="/admin")
     public String admin() {  
-        System.out.println("admin");  
         return "admin";  
     }  
 }

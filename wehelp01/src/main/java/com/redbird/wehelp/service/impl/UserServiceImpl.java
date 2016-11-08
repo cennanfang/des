@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService{
             permissions.addAll(pms);
         }  
         au.setRoles(roles);
+        au.setPermissions(permissions);
         return au;  
     }
     

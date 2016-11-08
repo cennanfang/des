@@ -1,5 +1,7 @@
 package com.redbird.wehelp.security.shiro;
 
+import java.util.Set;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -30,11 +32,14 @@ public class CustomRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+    	System.out.println("CustomRealm:doGetAuthorizationInfo  验证权限！");
         ActiveUser activeUser = (ActiveUser) principals.getPrimaryPrincipal();
         ActiveUser au = userService.loadPermissions(activeUser);
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(au.getStringRoles());
-        authorizationInfo.setStringPermissions(au.getStringPermissions());
+        Set<String> roles = au.getStringRoles();
+        Set<String> permissions = au.getStringPermissions();
+        authorizationInfo.setRoles(roles);
+        authorizationInfo.setStringPermissions(permissions);
         return authorizationInfo;
     }
 
@@ -51,7 +56,6 @@ public class CustomRealm extends AuthorizingRealm {
             throw new LockedAccountException(); //帐号锁定
         }
         // 打印登录用户
-        System.out.println(user);
         ActiveUser activeUser = UserUtils.userCopyToActiveUser(user);
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(

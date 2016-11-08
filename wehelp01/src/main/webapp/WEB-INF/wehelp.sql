@@ -98,7 +98,6 @@ insert into w_role(name, available, description) values('user', 1, '普通用户
 insert into w_role(name, available, description) values('admin', 1, '超级用户');
 
 insert into w_permission(role_id, token, url, available, description) values(1, 'home', '/home', 1, '用户角色资源');
-insert into w_permission(role_id, token, url, available, description) values(2, 'home', '/home', 1, '用户角色资源');
 insert into w_permission(role_id, token, url, available, description) values(2, 'admin', '/admin', 1, '管理员资源');
 
 insert into w_user_role(user_id, role_id) values(1, 1);
