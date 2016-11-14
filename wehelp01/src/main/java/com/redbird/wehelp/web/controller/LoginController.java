@@ -6,9 +6,9 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/")
@@ -26,7 +26,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/subLogin", method=RequestMethod.POST)
-	public String subLogin(@ModelAttribute("username") String username, @ModelAttribute("password") String password) {
+	public String subLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
 		username = username.trim();
 		password = password.trim();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password); 
