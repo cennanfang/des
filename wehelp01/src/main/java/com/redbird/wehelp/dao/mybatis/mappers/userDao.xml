@@ -31,8 +31,7 @@
 
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.User"
 		flushCache="true">
-		INSERT INTO w_user ( user_name, password, salt, locked, nick_name, sex, age, phone, email,
-		address)
+		INSERT INTO w_user ( user_name, password, salt, locked, nick_name, sex, age, phone, email,address)
 		VALUES
 		(#{userName},#{password},#{salt},#{locked},#{nickName},#{sex},#{age},#{phone},#{email},#{address})
 	</insert>

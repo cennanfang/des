@@ -1,10 +1,13 @@
 package com.redbird.wehelp.dao;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * 基础DAO接口
  * @author cennanfang
  * @param <T>
  */
+@Repository
 public interface BaseDao<T> {
 
 	/**

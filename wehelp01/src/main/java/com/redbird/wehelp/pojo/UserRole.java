@@ -2,32 +2,45 @@ package com.redbird.wehelp.pojo;
 
 /**
  * 用户角色类
+ * 
  * @author cennanfang
  *
  */
-public class UserRole extends BasePojo{
+public class UserRole extends BasePojo {
 
 	private static final long serialVersionUID = -2273855664408123236L;
 
 	// 用户
-	private User user;
-	
+	private int userId;
+
 	// 角色
-	private Role role;
+	private int roleId;
 
-	public User getUser() {
-		return user;
+	// 是否可用
+	private char available;
+
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public Role getRole() {
-		return role;
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
+
+	public char getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(char available) {
+		this.available = available;
+	}
+
 }

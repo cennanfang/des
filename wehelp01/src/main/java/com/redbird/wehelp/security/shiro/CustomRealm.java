@@ -15,10 +15,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.redbird.wehelp.pojo.ActiveUser;
 import com.redbird.wehelp.pojo.User;
 import com.redbird.wehelp.service.UserService;
-import com.redbird.wehelp.utils.UserUtils;
 
 /**
  * 
@@ -33,33 +31,29 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
     	System.out.println("CustomRealm:doGetAuthorizationInfo  验证权限！");
-        ActiveUser activeUser = (ActiveUser) principals.getPrimaryPrincipal();
-        ActiveUser au = userService.loadPermissions(activeUser);
+        int userId = (int) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        Set<String> roles = au.getStringRoles();
-        Set<String> permissions = au.getStringPermissions();
-        authorizationInfo.setRoles(roles);
-        authorizationInfo.setStringPermissions(permissions);
+        Set<String> roleNames = userService.userRoleNames(userId);
+        Set<String> permissionUrls = userService.userPermissionUrls(userId);
+        authorizationInfo.setRoles(roleNames);
+        authorizationInfo.setStringPermissions(permissionUrls);
         return authorizationInfo;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-
         String username = (String)token.getPrincipal();
         User user = userService.findByUserName(username);
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
         
-        if(Boolean.TRUE.equals(user.getLocked())) {
+        if("1".equals("" + user.getLocked())) {
             throw new LockedAccountException(); //帐号锁定
         }
-        // 打印登录用户
-        ActiveUser activeUser = UserUtils.userCopyToActiveUser(user);
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-        		activeUser, //用户名
+        		user.getId(), //用户ID
                 user.getPassword(), //密码
                 ByteSource.Util.bytes(user.getSalt()),//salt=username+salt
                 getName()  //realm name

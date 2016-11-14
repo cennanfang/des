@@ -12,30 +12,17 @@
         <result property="contacts" column="contacts"/>
         <result property="createDate" column="create_date"/>
         <result property="publishedDate" column="published_date"/>
-        <association property="messageType" javaType="com.redbird.wehelp.pojo.MessageType">
-            <id property="id" column="id"/>
-            <result property="name" column="name"/>
-        </association>
-        <association property="user" javaType="com.redbird.wehelp.pojo.User">
-            <id property="id" column="id"/>
-            <result property="userName" column="user_name"/>
-            <result property="password" column="password"/>
-            <result property="nickName" column="nick_name"/>
-            <result property="sex" column="sex"/>
-            <result property="age" column="age"/>
-            <result property="phone" column="phone"/>
-            <result property="email" column="email"/>
-            <result property="address" column="address"/>
-            <result property="createDate" column="create_date"/>
-        </association>
+        <result property="messageTypeId" column="type_id"/>
+        <result property="userId" column="user_id"/>
+        
     </resultMap>
 	
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.Message" flushCache="true">  
-   		INSERT INTO w_message (content, contacts, type_id, user_id) VALUES (#{content}, #{contacts}, #{messageType.id}, #{user.id})  
+   		INSERT INTO w_message (content, contacts, type_id, user_id) VALUES (#{content}, #{contacts}, #{messageTypeId}, #{userId})  
 	</insert>  
 	
 	<update id="update" parameterType="com.redbird.wehelp.pojo.Message">  
-    	UPDATE w_message SET content=#{content}, contacts=#{contacts}, type_id=#{messageType.id}, user_id=#{user.id} WHERE id=#{id}  
+    	UPDATE w_message SET content=#{content}, contacts=#{contacts}, type_id=#{messageTypeId}, user_id=#{userId} WHERE id=#{id}  
 	</update>  
 	
 	<delete id="delete" parameterType="int">  

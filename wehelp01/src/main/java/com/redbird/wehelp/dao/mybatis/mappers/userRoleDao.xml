@@ -16,35 +16,18 @@
 	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
 	<resultMap type="com.redbird.wehelp.pojo.UserRole" id="findUserRoleResult">
 		<id property="id" column="id" />
-		<association property="user" javaType="com.redbird.wehelp.pojo.User">
-			<id property="id" column="id" />
-			<result property="userName" column="user_name" />
-			<result property="password" column="password" />
-			<result property="salt" column="salt" />
-			<result property="locked" column="locked" />
-			<result property="nickName" column="nick_name" />
-			<result property="sex" column="sex" />
-			<result property="age" column="age" />
-			<result property="phone" column="phone" />
-			<result property="email" column="email" />
-			<result property="address" column="address" />
-			<result property="createDate" column="create_date" />
-		</association>
-		<association property="role" javaType="com.redbird.wehelp.pojo.Role">
-			<id property="id" column="id" />
-			<result property="name" column="name" />
-			<result property="available" column="available" />
-			<result property="description" column="description" />
-		</association>
+		<id property="userId" column="user_id" />
+		<id property="roleId" column="role_id" />
+		<id property="available" column="available" />
 	</resultMap>
 
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.UserRole"
 		flushCache="true">
-		INSERT INTO w_user_role (user_id, role_id) VALUES (#{user.id}, #{role.id})
+		INSERT INTO w_user_role (user_id, role_id, available) VALUES (#{userId}, #{roleId}, #{available})
 	</insert>
 
 	<update id="update" parameterType="com.redbird.wehelp.pojo.UserRole">
-		UPDATE w_user_role SET user_id=#{user.id}, role_id=#{role.id} WHERE id=#{id}
+		UPDATE w_user_role SET user_id=#{user.id}, role_id=#{role.id}, available=#{available} WHERE id=#{id}
 	</update>
 
 	<delete id="delete" parameterType="int">

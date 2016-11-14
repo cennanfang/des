@@ -12,6 +12,8 @@ public class MessageType extends BasePojo{
 	private String name;
 	// 描述
 	private String description;
+	// 是否可用
+	private char available;
 	
 	@Override
 	public String toString() {
@@ -32,6 +34,14 @@ public class MessageType extends BasePojo{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public char getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(char available) {
+		this.available = available;
 	}
 
 }

@@ -20,5 +20,6 @@ public interface UserRoleDao extends BaseDao<UserRole>{
 	 * @param userName
 	 * @return
 	 */
+	// TODO 这个方法可以不要了，打需要删除map。xml文件
 	public List<UserRole> findByUserName(String userName);
 }

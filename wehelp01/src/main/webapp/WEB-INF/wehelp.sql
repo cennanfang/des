@@ -22,6 +22,7 @@ CREATE TABLE `w_message_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT, 
   `name` varchar(20) NOT NULL, 
   `description` varchar(300) NOT NULL, 
+  `available` char(1) DEFAULT NULL COMMENT '是否可用0否1是',
   PRIMARY KEY (`id`)  
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;  
 
@@ -33,7 +34,7 @@ CREATE TABLE `w_message` (
   `type_id` int(11) NOT NULL,
   `content` varchar(600) NOT NULL, 
   `contacts` varchar(30) NOT NULL, 
-  `creat_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+  `create_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
   `published_date` TIMESTAMP,
   foreign key(user_id) references w_user(id),
   foreign key(type_id) references w_message_type(id),
@@ -68,6 +69,7 @@ CREATE TABLE `w_user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT, 
   `user_id` int(11), 
   `role_id` int(11), 
+  `available` char(1) DEFAULT NULL COMMENT '是否可用0否1是',
   foreign key(user_id) references w_user(id),
   foreign key(role_id) references w_role(id),
   PRIMARY KEY (`id`)  
@@ -100,8 +102,18 @@ insert into w_role(name, available, description) values('admin', 1, '超级用�
 insert into w_permission(role_id, token, url, available, description) values(1, 'home', '/home', 1, '用户角色资源');
 insert into w_permission(role_id, token, url, available, description) values(2, 'admin', '/admin', 1, '管理员资源');
 
-insert into w_user_role(user_id, role_id) values(1, 1);
-insert into w_user_role(user_id, role_id) values(1, 2);
+insert into w_user_role(user_id, role_id) values(1, 1, 1);
+insert into w_user_role(user_id, role_id) values(1, 2, 1);
 
 insert into w_message(content, contacts, user_id, type_id) values ('本人今天要从册亨去兴义', '12333333333', 1, 1);
 insert into w_message(content, contacts, user_id, type_id) values ('本人要从兴义到册亨', '16633339999', 2, 2);
+insert into w_message(content, contacts, user_id, type_id) values ('本人要从兴义到贵阳', '16633339992', 2, 1);
+insert into w_message(content, contacts, user_id, type_id) values ('本人要从册亨到贵阳', '16633339993', 1, 2);
+insert into w_message(content, contacts, user_id, type_id) values ('本人要从贵阳到北京', '16633339994', 2, 2);
+insert into w_message(content, contacts, user_id, type_id) values ('本人要从北京到纽约', '16633339995', 1, 2);
+insert into w_message(content, contacts, user_id, type_id) values ('本人要从纽约到伦敦', '16633339996', 1, 2);
+insert into w_message(content, contacts, user_id, type_id) values ('本人要从纽约到扒犁', '16633339997', 1, 2);
+
+
+--查询信息
+select * from w_message where id > 3 order by id desc limit 0,2;

@@ -5,16 +5,17 @@
 		select 
 		id as id,
 		name as name,
-		description as description
+		description as description,
+		available as available
 		from w_message_type where id=#{id}
 	</select>
 	
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.MessageType" flushCache="true">  
-   		INSERT INTO w_message_type (name, description) VALUES (#{name}, #{description})  
+   		INSERT INTO w_message_type (name, description, available) VALUES (#{name}, #{description}, #{available})  
 	</insert>  
 	
 	<update id="update" parameterType="com.redbird.wehelp.pojo.MessageType">  
-    	UPDATE w_message_type SET name=#{name} description=#{description} WHERE id=#{id}  
+    	UPDATE w_message_type SET name=#{name}, description=#{description}, available=#{available} WHERE id=#{id}  
 	</update>  
 	
 	<delete id="delete" parameterType="int">  

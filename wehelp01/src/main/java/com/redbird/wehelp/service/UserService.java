@@ -1,25 +1,33 @@
 package com.redbird.wehelp.service;
 
-import java.util.List;
+import java.util.Set;
 
-import com.redbird.wehelp.pojo.ActiveUser;
-import com.redbird.wehelp.pojo.Permission;
 import com.redbird.wehelp.pojo.User;
 
-
+/**
+ * 用户服务层管理类
+ * @author cennanfang
+ *
+ */
 public interface UserService {
 
 	
-	public List<Permission> findPermissionsByUserId(int userId);
-	
-	
+	/**
+	 * 通过用户名查找用户
+	 * @param username
+	 * @return userId
+	 */
 	public User findByUserName(String userName);
 	
 	/**
-	 * 使用此方法效率更高，因为它将不再查询数据库获取用户信息
-	 * 加载用户权限1、角色 2、权限资源
-	 * @param userId
-	 * @return 
+	 * 获取用户拥有的角色名称
+	 * @return
 	 */
-	public ActiveUser loadPermissions(ActiveUser au);
+	public Set<String> userRoleNames(int userId);
+	
+	/**
+	 * 用户拥有的权限列表
+	 * @return
+	 */
+	public Set<String> userPermissionUrls(int userId);
 }

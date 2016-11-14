@@ -24,20 +24,11 @@ public class Message extends BasePojo{
 	private Date publishedDate;
 	
 	// 信息类型
-	private MessageType messageType;
+	private int messageTypeId;
 	
 	// 所属用户
-	private User user;
+	private int userId;
 	
-	@Override
-	public String toString() {
-		String msg = user.getNickName() + " "
-				   + messageType.getName() 
-				   + ":" + content + " ��ϵ��ʽ "
-				   + contacts;
-		return msg;
-	}
-
 	public String getContent() {
 		return content;
 	}
@@ -62,27 +53,27 @@ public class Message extends BasePojo{
 		this.publishedDate = publishedDate;
 	}
 
-	public MessageType getMessageType() {
-		return messageType;
-	}
-
-	public void setMessageType(MessageType messageType) {
-		this.messageType = messageType;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public String getContacts() {
 		return contacts;
 	}
 
 	public void setContacts(String contacts) {
 		this.contacts = contacts;
+	}
+
+	public int getMessageTypeId() {
+		return messageTypeId;
+	}
+
+	public void setMessageTypeId(int messageTypeId) {
+		this.messageTypeId = messageTypeId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }
