@@ -6,10 +6,6 @@
 		select * from w_user_role ur, w_role r, w_user u where ur.user_id=#{userId} and ur.role_id=r.id and ur.user_id=u.id
 	</select>
 	
-	<select id="findByUserName" parameterType="String" resultMap="findUserRoleResult" resultType="java.util.List">
-		select * from w_user_role ur, w_role r, w_user u where ur.user_name=#{user_name} and ur.role_id=r.id and ur.user_id=u.id
-	</select>
-	
 	<select id="find" parameterType="int" resultMap="findUserRoleResult">
 		select * from w_user_role ur, w_role r, w_user u where ur.id=#{id} and ur.role_id=r.id and ur.user_id=u.id
 	</select>

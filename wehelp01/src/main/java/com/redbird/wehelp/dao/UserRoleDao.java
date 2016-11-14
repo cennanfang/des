@@ -15,11 +15,4 @@ public interface UserRoleDao extends BaseDao<UserRole>{
 	 */
 	public List<UserRole> findByUserId(int userId);
 	
-	/**
-	 * 查找用户角色列表
-	 * @param userName
-	 * @return
-	 */
-	// TODO 这个方法可以不要了，打需要删除map。xml文件
-	public List<UserRole> findByUserName(String userName);
 }
