@@ -15,6 +15,15 @@ public class MessagesModel {
 	
 	// 信息链表
 	private List<Message> messages;
+	
+	@Override
+	public String toString() {
+		String str = "currentMsgPoint=" + currentMsgPoint + " |  messages: ";
+		for (Message message : messages) {
+			str += message;
+		}
+		return str;
+	}
 
 	public List<Message> getMessages() {
 		return messages;

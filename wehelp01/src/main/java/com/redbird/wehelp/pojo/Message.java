@@ -29,6 +29,11 @@ public class Message extends BasePojo{
 	// 所属用户
 	private int userId;
 	
+	@Override
+	public String toString() {
+		return  "id-" + id + "  " +content + " " + createDate;
+	}
+	
 	public String getContent() {
 		return content;
 	}

@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.redbird.wehelp.dao.UserRoleDao">
 
-	<select id="findByUserId" parameterType="int" resultMap="findUserRoleResult" resultType="java.util.List">
+	<select id="findByUserId" parameterType="int" resultMap="userRoleResult" resultType="java.util.List">
 		select * from w_user_role ur, w_role r, w_user u where ur.user_id=#{userId} and ur.role_id=r.id and ur.user_id=u.id
 	</select>
 	
-	<select id="find" parameterType="int" resultMap="findUserRoleResult">
+	<select id="find" parameterType="int" resultMap="userRoleResult">
 		select * from w_user_role ur, w_role r, w_user u where ur.id=#{id} and ur.role_id=r.id and ur.user_id=u.id
 	</select>
 	<!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
-	<resultMap type="com.redbird.wehelp.pojo.UserRole" id="findUserRoleResult">
+	<resultMap type="com.redbird.wehelp.pojo.UserRole" id="userRoleResult">
 		<id property="id" column="id" />
 		<id property="userId" column="user_id" />
 		<id property="roleId" column="role_id" />

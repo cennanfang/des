@@ -1,7 +1,5 @@
 package com.redbird.wehelp.service;
 
-import org.springframework.stereotype.Service;
-
 import com.redbird.wehelp.utils.MessagesModel;
 
 /**
@@ -15,10 +13,11 @@ import com.redbird.wehelp.utils.MessagesModel;
  * @author cennanfang
  *
  */
-@Service
 public interface MessageService {
-	
-	public MessagesModel load(int startMsgId);
-	
-	public MessagesModel loadbefore();
+	/**
+	 * 加载信息列表
+	 * @param startMsgId 默认值0
+	 * @return
+	 */
+	public MessagesModel load(int startMsgId, int pageSize);
 }
