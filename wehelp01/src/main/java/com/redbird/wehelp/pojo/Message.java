@@ -1,6 +1,6 @@
 package com.redbird.wehelp.pojo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * 信息对象
@@ -18,10 +18,10 @@ public class Message extends BasePojo{
 	private String contacts;
 	
 	// 创建日期
-	private Date createDate;
+	private Timestamp createDate;
 	
 	// 发布日期
-	private Date publishedDate;
+	private Timestamp publishedDate;
 	
 	// 信息类型
 	private int messageTypeId;
@@ -40,22 +40,6 @@ public class Message extends BasePojo{
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public Date getPublishedDate() {
-		return publishedDate;
-	}
-
-	public void setPublishedDate(Date publishedDate) {
-		this.publishedDate = publishedDate;
 	}
 
 	public String getContacts() {
@@ -80,5 +64,21 @@ public class Message extends BasePojo{
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public Timestamp getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate;
+	}
+
+	public Timestamp getPublishedDate() {
+		return publishedDate;
+	}
+
+	public void setPublishedDate(Timestamp publishedDate) {
+		this.publishedDate = publishedDate;
 	}
 }

@@ -6,16 +6,20 @@
         select * from w_message where id > #{startMsgId} order by id desc limit 0,#{pageSize}
     </select>
     
+    <select id="listMesgs" resultMap="messageResult" resultType="java.util.List">
+    	 select * from w_message
+    </select>
+    
 	<select id="find" parameterType="int" resultMap="messageResult">
         select * from w_message where id = #{id}
     </select>
     <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
-    <resultMap type="com.redbird.wehelp.pojo.Message" id="messageResult">
+    <resultMap id="messageResult" type="com.redbird.wehelp.pojo.Message">
         <id property="id" column="id"/>
         <result property="content" column="content"/>
         <result property="contacts" column="contacts"/>
-        <result property="createDate" column="create_date"/>
-        <result property="publishedDate" column="published_date"/>
+        <result javaType="java.sql.Timestamp" property="createDate" column="create_date"/>
+        <result javaType="java.sql.Timestamp" property="publishedDate" column="published_date"/>
         <result property="messageTypeId" column="type_id"/>
         <result property="userId" column="user_id"/>
     </resultMap>

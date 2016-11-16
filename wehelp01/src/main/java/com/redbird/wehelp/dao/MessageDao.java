@@ -16,4 +16,6 @@ public interface MessageDao extends BaseDao<Message>{
 	 */
 	public List<Message> loadMesgs(@Param("startMsgId") int startMsgId,
 								  @Param("pageSize") int pageSize);
+	
+	public List<Message> listMesgs();
 }
