@@ -9,7 +9,7 @@ import com.redbird.wehelp.utils.MessagesModel;
 
 public class MessageServiceImplTest extends BaseTest{
 
-	@Resource(name = "messageService")
+	@Resource
 	private MessageService messageService;
 	
 	@Test

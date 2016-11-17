@@ -10,7 +10,7 @@ import com.redbird.wehelp.pojo.Message;
 import com.redbird.wehelp.service.MessageService;
 import com.redbird.wehelp.utils.MessagesModel;
 
-@Service("messageService")
+@Service
 public class MessageServiceImpl implements MessageService{
 	
 	@Autowired
