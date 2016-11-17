@@ -18,9 +18,9 @@ public class MessagesModel {
 	
 	@Override
 	public String toString() {
-		String str = "currentMsgPoint=" + currentMsgPoint + " |  messages: ";
+		String str = "currentMsgPoint=" + currentMsgPoint + "\r\nmessages: \r\n";
 		for (Message message : messages) {
-			str += message;
+			str += (message + "\r\n");
 		}
 		return str;
 	}
