@@ -19,9 +19,10 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public MessagesModel load(int startMsgId, int pageSize) {
 		System.out.println(startMsgId + "  " + pageSize);
-		List<Message> messages = messageDao.loadMesgs(startMsgId, pageSize);
+		List<Message> messages = messageDao.loadMesgsAfter(startMsgId, pageSize);
 		System.out.println("count result: " + messages.size());
 		MessagesModel messagesModel = new MessagesModel();
+		messagesModel.setCurrentMsgPoint(messages.get(0).getId());
 		messagesModel.setMessages(messages);
 		return messagesModel;
 	}

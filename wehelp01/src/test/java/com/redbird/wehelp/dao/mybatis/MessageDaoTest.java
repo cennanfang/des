@@ -22,16 +22,16 @@ public class MessageDaoTest extends BaseTest {
 	}
 	
 	@Test
-	public void testLoadMesgs() {
-		List<Message> ms = messageDao.loadMesgs(0, 3);
+	public void testLoadMesgsAfter() {
+		List<Message> ms = messageDao.loadMesgsAfter(0, 3);
 		for (Message message : ms) {
 			System.out.println(message);
 		}
 	}
 	
 	@Test
-	public void testListMesgs() {
-		List<Message> ms = messageDao.listMesgs();
+	public void testLoadMesgsBefore() {
+		List<Message> ms = messageDao.loadMesgsBefore(6, 3);
 		for (Message message : ms) {
 			System.out.println(message);
 		}

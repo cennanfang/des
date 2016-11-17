@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.redbird.wehelp.dao.MessageDao">
 	
-	<select id="loadMesgs" resultMap="messageResult" resultType="java.util.List">
-        select * from w_message where id > #{startMsgId} order by id desc limit 0,#{pageSize}
+	<select id="loadMesgsAfter" resultMap="messageResult" resultType="java.util.List">
+        select * from w_message where id &gt; #{startMsgId} order by id desc limit 0,#{pageSize}
     </select>
     
-    <select id="listMesgs" resultMap="messageResult" resultType="java.util.List">
-    	 select * from w_message
+	<select id="loadMesgsBefore" resultMap="messageResult" resultType="java.util.List">
+        select * from w_message where id &lt; #{startMsgId} order by id desc limit 0,#{pageSize}
     </select>
     
 	<select id="find" parameterType="int" resultMap="messageResult">
