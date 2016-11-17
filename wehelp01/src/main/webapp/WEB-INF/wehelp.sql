@@ -81,7 +81,7 @@ values('rose', '000000', 0, '肉丝', 2, 18, '13888888888', 'meigui@qq.com', '�
 insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
 values('jack', '000000', 0, '杰克', 1, 20, '13999999999', 'jiege@qq.com', '伦敦');
 insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
-values('zhangjie', '000000', 0, '张杰', 1, 20, '133333333333', 'zhangsan@qq.com', '北京');
+values('zhangjie', '000000', 0, '张杰', 1, 20, '13333333333', 'zhangsan@qq.com', '北京');
 insert into w_user(user_name, password, locked, nick_name, sex, age, phone, email, address)
 values('huazai', '000000', 0, '华仔', 1, 19, '13666666666', 'lisi@qq.com', '香港');
 
@@ -90,11 +90,11 @@ update w_user set password='MTI4NWQ0ZWU2YTk1MTRjMzVhNzI5NmE5MzliNTFjOTU=', salt=
 update w_user set password='MWVjYzc3YTM5ODk5MWJlNGI2OGUzNGE1NGNkNTEzZTM=', salt='2f556a247b317622796c6960253f6175' where id = 3;
 update w_user set password='M2M0NmVmN2U4YWU4MTUwNDU1YmQ1YzM0YzhiNzljMWU=', salt='7923342e60554c3d7c3c7b79543f2b50' where id = 4;
 
-insert into w_message_type(name) values('出行：人找车');
-insert into w_message_type(name) values('出行：车找人');
-insert into w_message_type(name) values('招聘求职');
-insert into w_message_type(name) values('告示通告');
-insert into w_message_type(name) values('求购出售');
+insert into w_message_type(name, description, available) values('出行：人找车', '描述', 1);
+insert into w_message_type(name, description, available) values('出行：车找人', '描述', 1);
+insert into w_message_type(name, description, available) values('招聘求职', '描述', 1);
+insert into w_message_type(name, description, available) values('告示通告', '描述', 1);
+insert into w_message_type(name, description, available) values('求购出售', '描述', 1);
 
 insert into w_role(name, available, description) values('user', 1, '普通用户');
 insert into w_role(name, available, description) values('admin', 1, '超级用户');
@@ -102,8 +102,8 @@ insert into w_role(name, available, description) values('admin', 1, '超级用�
 insert into w_permission(role_id, token, url, available, description) values(1, 'home', '/home', 1, '用户角色资源');
 insert into w_permission(role_id, token, url, available, description) values(2, 'admin', '/admin', 1, '管理员资源');
 
-insert into w_user_role(user_id, role_id) values(1, 1, 1);
-insert into w_user_role(user_id, role_id) values(1, 2, 1);
+insert into w_user_role(user_id, role_id, available) values(1, 1, 1);
+insert into w_user_role(user_id, role_id, available) values(1, 2, 1);
 
 insert into w_message(content, contacts, user_id, type_id) values ('本人今天要从册亨去兴义', '12333333333', 1, 1);
 insert into w_message(content, contacts, user_id, type_id) values ('本人要从兴义到册亨', '16633339999', 2, 2);
