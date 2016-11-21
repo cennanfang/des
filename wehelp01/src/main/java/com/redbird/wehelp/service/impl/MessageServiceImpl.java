@@ -12,30 +12,37 @@ import com.redbird.wehelp.service.MessageService;
 import com.redbird.wehelp.utils.MessagesModel;
 
 @Service
-public class MessageServiceImpl implements MessageService{
-	
+public class MessageServiceImpl implements MessageService {
+
 	@Autowired
 	private MessageDao messageDao;
-	
+
 	@Override
-	public MessagesModel refreshMessage(Timestamp startMsgId, int pageSize) {
-		List<Message> messages = messageDao.loadMesgsAfter(startMsgId, pageSize);
+	public MessagesModel refreshMessage(Timestamp markPublishedDate, int pageSize) {
+		List<Message> messages = messageDao.loadMesgsAfter(markPublishedDate, pageSize);
 		MessagesModel messagesModel = null;
-		if(messages != null) {
+		if (messages != null && !messages.isEmpty()) {
 			messagesModel = new MessagesModel();
 			// 装载数据
 			messagesModel.setMessages(messages);
-			// 记录最新一条数据的Id
-			messagesModel.setCurrentMesgsPoint(messages.get(0).getId());
+			// 记录最新一条数据
+			messagesModel.setMarkPublishedDate(messages.get(0).getPublishedDate());
 		}
 		return messagesModel;
 	}
 
-
 	@Override
-	public MessagesModel loadMessage(Timestamp markPublishedDate, Timestamp limitPublishedDate, int pageSize) {
-		// TODO loadMessage
-		return null;
+	public MessagesModel loadMessage(Timestamp maxPublishedDate, Timestamp minPublishedDate, int pageSize) {
+		List<Message> messages = messageDao.loadMesgsBefore(maxPublishedDate, minPublishedDate, pageSize);
+		MessagesModel messagesModel = null;
+		if (messages != null && !messages.isEmpty()) {
+			messagesModel = new MessagesModel();
+			// 装载数据
+			messagesModel.setMessages(messages);
+			// 记录
+			messagesModel.setMarkPublishedDate(messages.get(messages.size() - 1).getPublishedDate());
+		}
+		return messagesModel;
 	}
 
 	public MessageDao getMessageDao() {

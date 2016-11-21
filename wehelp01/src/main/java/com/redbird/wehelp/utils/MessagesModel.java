@@ -1,5 +1,6 @@
 package com.redbird.wehelp.utils;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.redbird.wehelp.pojo.Message;
@@ -10,8 +11,8 @@ import com.redbird.wehelp.pojo.Message;
  *
  */
 public class MessagesModel {
-	// 当前指针
-	private int currentMesgsPoint;
+	// 当前记录
+	private Timestamp markPublishedDate;
 	// 返回结果数据条数
 	private int mesgsTotal;
 	
@@ -20,7 +21,7 @@ public class MessagesModel {
 	
 	@Override
 	public String toString() {
-		String str = "currentMsgPoint=" + currentMesgsPoint + "\r\nmessages: \r\n";
+		String str = "currentMsgPoint=" + markPublishedDate + "\r\nmessages: \r\n";
 		for (Message message : messages) {
 			str += (message + "\r\n");
 		}
@@ -34,20 +35,20 @@ public class MessagesModel {
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
-
-	public int getCurrentMesgsPoint() {
-		return currentMesgsPoint;
-	}
-
-	public void setCurrentMesgsPoint(int currentMesgsPoint) {
-		this.currentMesgsPoint = currentMesgsPoint;
-	}
-
+	
 	public int getMesgsTotal() {
 		return mesgsTotal;
 	}
 
 	public void setMesgsTotal(int mesgsTotal) {
 		this.mesgsTotal = mesgsTotal;
+	}
+
+	public Timestamp getMarkPublishedDate() {
+		return markPublishedDate;
+	}
+
+	public void setMarkPublishedDate(Timestamp markPublishedDate) {
+		this.markPublishedDate = markPublishedDate;
 	}
 }

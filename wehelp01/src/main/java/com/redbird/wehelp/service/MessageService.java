@@ -20,20 +20,21 @@ import com.redbird.wehelp.utils.MessagesModel;
  */
 public interface MessageService {
 	/**
-	 * 更新信息列表，查看startMsgId之后是否有新的数据
-	 * @param startMsgId 起始id
+	 * 更新信息列表，查看markPublishedDate之后是否有新的数据
+	 * @param markPublishedDate 其实发布时间
 	 * @param pageSize （最高）返回结果数据
 	 * @return
 	 */
 	public MessagesModel refreshMessage(Timestamp markPublishedDate, int pageSize);
 	
 	/**
-	 * 加载信息列表，查看startMsgId之前是否有新的数据
-	 * @param startMsgId 起始id
+	 * 加载信息列表，maxPublishedDate和minPublishedDate的信息
+	 * @param maxPublishedDate 最新时间
+	 * @param minPublishedDate 最旧时间
 	 * @param pageSize （最高）返回结果数据
 	 * @return
 	 */
-	public MessagesModel loadMessage(Timestamp markPublishedDate, 
-									 Timestamp limitPublishedDate, 
+	public MessagesModel loadMessage(Timestamp maxPublishedDate, 
+									 Timestamp minPublishedDate, 
 									 int pageSize);
 }
