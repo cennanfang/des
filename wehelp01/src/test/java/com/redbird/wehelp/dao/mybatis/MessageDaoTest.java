@@ -39,5 +39,16 @@ public class MessageDaoTest extends BaseTest {
 	
 	@Test
 	public void testLoadMesgsBefore() {
+		try {
+			Timestamp maxPuhishedDate = DataUtils.stringToTimesamp("2016-11-21 11:08:06.151");
+			Timestamp minPuhishedDate = DataUtils.stringToTimesamp("2016-11-21 11:08:06.134");
+			List<Message> ms = messageDao.loadMesgsBefore(maxPuhishedDate, minPuhishedDate, 3);
+			for (Message message : ms) {
+				System.out.println(message);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
