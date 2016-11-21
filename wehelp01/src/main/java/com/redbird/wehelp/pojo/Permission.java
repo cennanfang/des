@@ -5,7 +5,7 @@ package com.redbird.wehelp.pojo;
  * @author cennanfang
  *
  */
-public class Permission extends BasePojo {
+public class Permission extends DataBasePojo {
 	
 	private static final long serialVersionUID = 3032341793085702601L;
 

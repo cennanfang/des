@@ -2,7 +2,7 @@ package com.redbird.wehelp.service;
 
 import java.sql.Timestamp;
 
-import com.redbird.wehelp.utils.MessagesModel;
+import com.redbird.wehelp.pojo.MessagesModel;
 
 /**
  * 信息管理类

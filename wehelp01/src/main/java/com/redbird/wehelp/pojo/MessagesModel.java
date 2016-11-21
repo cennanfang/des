@@ -1,16 +1,16 @@
-package com.redbird.wehelp.utils;
+package com.redbird.wehelp.pojo;
 
 import java.sql.Timestamp;
 import java.util.List;
-
-import com.redbird.wehelp.pojo.Message;
 
 /**
  * 
  * @author cennanfang
  *
  */
-public class MessagesModel {
+public class MessagesModel implements BasePojo{
+	
+	private static final long serialVersionUID = 6178828997336820015L;
 	// 当前记录
 	private Timestamp markPublishedDate;
 	// 返回结果数据条数

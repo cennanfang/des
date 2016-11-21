@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
+import com.redbird.wehelp.pojo.MessagesModel;
 import com.redbird.wehelp.service.MessageService;
 import com.redbird.wehelp.utils.DataUtils;
-import com.redbird.wehelp.utils.MessagesModel;
 
 public class MessageServiceImplTest extends BaseTest{
 

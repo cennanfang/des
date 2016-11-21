@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.redbird.wehelp.dao.MessageDao;
 import com.redbird.wehelp.pojo.Message;
+import com.redbird.wehelp.pojo.MessagesModel;
 import com.redbird.wehelp.service.MessageService;
-import com.redbird.wehelp.utils.MessagesModel;
 
 @Service
 public class MessageServiceImpl implements MessageService {
