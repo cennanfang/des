@@ -5,7 +5,7 @@ package com.redbird.wehelp.pojo;
  * @author cennanfang
  *
  */
-public class DataBasePojo implements BasePojo{
+public class DBPojo implements BasePojo{
 	
 	private static final long serialVersionUID = 7192966620175373660L;
 	// pojo标识
