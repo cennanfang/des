@@ -1,5 +1,6 @@
 package com.redbird.wehelp.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -11,16 +12,21 @@ import com.redbird.wehelp.pojo.Message;
 public interface MessageDao extends BaseDao<Message>{
 	/**
 	 * 加载信息startMsgId之后的信息
-	 * @param startMsgId
+	 * @param markPublishedDate 最新的信息记录发布时间
+	 * @param pageSize 查询的数据条数
 	 * @return
 	 */
-	public List<Message> loadMesgsAfter(@Param("startMsgId") int startMsgId,
-								  @Param("pageSize") int pageSize);
+	public List<Message> loadMesgsAfter(
+							@Param("markPublishedDate") Timestamp markPublishedDate,
+							@Param("pageSize") int pageSize);
 	/**
 	 * 加载信息startMsgId之前的信息
-	 * @param startMsgId
+	 * @param markPublishedDate 最大的信息发布时间
+	 * @param limitPublishedDate 最新的信息发布时间
 	 * @return
 	 */
-	public List<Message> loadMesgsBefore(@Param("startMsgId") int startMsgId,
-			@Param("pageSize") int pageSize);
+	public List<Message> loadMesgsBefore(
+							@Param("markPublishedDate") Timestamp markPublishedDate,
+							@Param("limitPublishedDate") Timestamp limitPublishedDate,
+							@Param("pageSize") int pageSize);
 }

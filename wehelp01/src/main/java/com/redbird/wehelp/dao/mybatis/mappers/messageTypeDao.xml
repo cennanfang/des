@@ -7,18 +7,18 @@
 		name as name,
 		description as description,
 		available as available
-		from w_message_type where id=#{id}
+		from t_message_type where id=#{id}
 	</select>
 	
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.MessageType" flushCache="true">  
-   		INSERT INTO w_message_type (name, description, available) VALUES (#{name}, #{description}, #{available})  
+   		INSERT INTO t_message_type (name, description, available) VALUES (#{name}, #{description}, #{available})  
 	</insert>  
 	
 	<update id="update" parameterType="com.redbird.wehelp.pojo.MessageType">  
-    	UPDATE w_message_type SET name=#{name}, description=#{description}, available=#{available} WHERE id=#{id}  
+    	UPDATE t_message_type SET name=#{name}, description=#{description}, available=#{available} WHERE id=#{id}  
 	</update>  
 	
 	<delete id="delete" parameterType="int">  
-    	DELETE FROM w_message_type WHERE id=#{id}  
+    	DELETE FROM t_message_type WHERE id=#{id}  
 	</delete>  
 </mapper>

@@ -3,15 +3,15 @@
 <mapper namespace="com.redbird.wehelp.dao.MessageDao">
 	
 	<select id="loadMesgsAfter" resultMap="messageResult" resultType="java.util.List">
-        select * from w_message where id &gt; #{startMsgId} order by id desc limit 0,#{pageSize}
+        select * from t_message where published_date &gt; #{markPublishedDate} order by published_date desc limit #{pageSize}
     </select>
     
 	<select id="loadMesgsBefore" resultMap="messageResult" resultType="java.util.List">
-        select * from w_message where id &lt; #{startMsgId} order by id desc limit 0,#{pageSize}
+        select * from t_message where published_date between  #{limitPublishedDate} and #{markPublishedDate} order by published_date desc limit 0,#{pageSize}
     </select>
     
 	<select id="find" parameterType="int" resultMap="messageResult">
-        select * from w_message where id = #{id}
+        select * from t_message where id = #{id}
     </select>
     <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
     <resultMap id="messageResult" type="com.redbird.wehelp.pojo.Message">
@@ -25,14 +25,14 @@
     </resultMap>
 	
 	<insert id="add" parameterType="com.redbird.wehelp.pojo.Message" flushCache="true">  
-   		INSERT INTO w_message (content, contacts, type_id, user_id) VALUES (#{content}, #{contacts}, #{messageTypeId}, #{userId})  
+   		INSERT INTO t_message (content, contacts, type_id, user_id) VALUES (#{content}, #{contacts}, #{messageTypeId}, #{userId})  
 	</insert>  
 	
 	<update id="update" parameterType="com.redbird.wehelp.pojo.Message">  
-    	UPDATE w_message SET content=#{content}, contacts=#{contacts}, type_id=#{messageTypeId}, user_id=#{userId} WHERE id=#{id}  
+    	UPDATE t_message SET content=#{content}, contacts=#{contacts}, type_id=#{messageTypeId}, user_id=#{userId} WHERE id=#{id}  
 	</update>  
 	
 	<delete id="delete" parameterType="int">  
-    	DELETE FROM w_message WHERE id=#{id}  
+    	DELETE FROM t_message WHERE id=#{id}  
 	</delete>  
 </mapper>

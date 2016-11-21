@@ -11,14 +11,16 @@ import com.redbird.wehelp.pojo.Message;
  */
 public class MessagesModel {
 	// 当前指针
-	private int currentMsgPoint;
+	private int currentMesgsPoint;
+	// 返回结果数据条数
+	private int mesgsTotal;
 	
 	// 信息链表
 	private List<Message> messages;
 	
 	@Override
 	public String toString() {
-		String str = "currentMsgPoint=" + currentMsgPoint + "\r\nmessages: \r\n";
+		String str = "currentMsgPoint=" + currentMesgsPoint + "\r\nmessages: \r\n";
 		for (Message message : messages) {
 			str += (message + "\r\n");
 		}
@@ -33,12 +35,19 @@ public class MessagesModel {
 		this.messages = messages;
 	}
 
-	public int getCurrentMsgPoint() {
-		return currentMsgPoint;
+	public int getCurrentMesgsPoint() {
+		return currentMesgsPoint;
 	}
 
-	public void setCurrentMsgPoint(int currentMsgPoint) {
-		this.currentMsgPoint = currentMsgPoint;
+	public void setCurrentMesgsPoint(int currentMesgsPoint) {
+		this.currentMesgsPoint = currentMesgsPoint;
 	}
-	
+
+	public int getMesgsTotal() {
+		return mesgsTotal;
+	}
+
+	public void setMesgsTotal(int mesgsTotal) {
+		this.mesgsTotal = mesgsTotal;
+	}
 }
