@@ -7,7 +7,7 @@ import java.util.Date;
  * @author cennanfang
  *
  */
-public class User extends DBPojo {
+public class User extends BasePojo {
 
 	private static final long serialVersionUID = 2823502811911931186L;
 	// 用户名

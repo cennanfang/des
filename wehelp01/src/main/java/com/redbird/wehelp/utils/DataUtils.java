@@ -12,7 +12,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.redbird.wehelp.pojo.BasePojo;
 import com.redbird.wehelp.pojo.Message;
 import com.redbird.wehelp.pojo.MessagesModel;
 
@@ -52,7 +51,7 @@ public class DataUtils {
 	 * @throws ParseException
 	 * @throws JsonProcessingException
 	 */
-	synchronized public static String pojoToJson(BasePojo pojo) throws ParseException, JsonProcessingException {
+	synchronized public static String pojoToJson(Object pojo) throws ParseException, JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		String json = objectMapper.writeValueAsString(pojo);
 		return json;
@@ -63,15 +62,17 @@ public class DataUtils {
 	 * 将对象转换为json串
 	 * @param <T>
 	 * @param o
+	 * @return 
+	 * @return 
 	 * @return
 	 * @throws IOException 
 	 * @throws JsonMappingException 
 	 * @throws JsonParseException 
 	 */
-	synchronized public static <T> BasePojo jsonToPojo(String json, Class<T> c) throws JsonParseException, JsonMappingException, IOException{
+	synchronized public static <T> T jsonToPojo(String json, Class<T> c) throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper objectMapper = new ObjectMapper();
 		T pojo = objectMapper.readValue(json, c);
-		return (BasePojo) pojo;
+		return pojo;
 		
 	}
 	
@@ -104,7 +105,7 @@ public class DataUtils {
 			String json = DataUtils.pojoToJson(mm);
 			System.out.println(json);
 			
-			MessagesModel msgM = (MessagesModel) DataUtils.jsonToPojo(json, MessagesModel.class);
+			MessagesModel msgM = DataUtils.jsonToPojo(json, MessagesModel.class);
 			System.out.println(msgM);
 		} catch (ParseException | IOException e) {
 			e.printStackTrace();

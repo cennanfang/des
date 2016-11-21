@@ -6,7 +6,7 @@ package com.redbird.wehelp.pojo;
  * @author cennanfang
  *
  */
-public class UserRole extends DBPojo {
+public class UserRole extends BasePojo {
 
 	private static final long serialVersionUID = -2273855664408123236L;
 

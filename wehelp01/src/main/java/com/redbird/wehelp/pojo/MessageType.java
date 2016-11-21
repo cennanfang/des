@@ -5,7 +5,7 @@ package com.redbird.wehelp.pojo;
  * @author cennanfang
  *
  */
-public class MessageType extends DBPojo{
+public class MessageType extends BasePojo{
 	
 	private static final long serialVersionUID = 8829033850039942630L;
 	// 类型名称

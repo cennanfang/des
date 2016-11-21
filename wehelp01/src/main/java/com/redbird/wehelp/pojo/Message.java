@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * @author cennanfang
  *
  */
-public class Message extends DBPojo{
+public class Message extends BasePojo{
 
 	private static final long serialVersionUID = -435864400662153843L;
 

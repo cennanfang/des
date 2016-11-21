@@ -8,7 +8,7 @@ import java.util.List;
  * @author cennanfang
  *
  */
-public class MessagesModel implements BasePojo{
+public class MessagesModel extends BasePojo{
 	
 	private static final long serialVersionUID = 6178828997336820015L;
 	// 当前记录
