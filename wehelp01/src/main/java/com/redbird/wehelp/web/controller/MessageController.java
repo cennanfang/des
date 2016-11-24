@@ -32,6 +32,8 @@ public class MessageController {
 			Timestamp markPublishedDate = DataUtils.stringToTimesamp("2016-11-21 11:08:06.128");
 			MessagesModel msgModel = messageService.refreshMessage(markPublishedDate, 3);
 			json = DataUtils.pojoToJson(msgModel);
+//			对数据加密
+//			json = TextEncrypty.getTextEncrypty().encrypt(json);
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 			throw e;

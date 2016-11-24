@@ -48,4 +48,15 @@ public class TextEncrypty implements Serializable{
 		String decryptText=  new String(aesCipherService.decrypt(Hex.decode(encrptText), key.getEncoded()).getBytes());  
 		return decryptText;
 	}
+	
+	public static TextEncrypty getTextEncrypty() {
+		TextEncrypty textEncrypty = new TextEncrypty();
+		return textEncrypty;
+	}
+	
+	public static TextEncrypty getTextEncrypty(int keySize) {
+		TextEncrypty textEncrypty = new TextEncrypty(keySize);
+		return textEncrypty;
+	}
+	
 }
