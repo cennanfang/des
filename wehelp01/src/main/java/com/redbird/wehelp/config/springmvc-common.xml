@@ -12,18 +12,14 @@
 
 	<!-- scan the package and the sub package -->
 	<context:component-scan base-package="com.redbird.wehelp.web.controller" />
-
 	<!-- don't handle the static resource -->
 	<mvc:default-servlet-handler />
-
 	<!-- if you use annotation you must configure following setting -->
 	<!-- <mvc:annotation-driven /> -->
-	
 	 <bean id="utf8Charset" class="java.nio.charset.Charset"
           factory-method="forName">
         <constructor-arg value="UTF-8"/>
     </bean>
-
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -34,7 +30,6 @@
 
 	<!-- 静态资源映射 -->
 	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
-
 
 	<!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
 	<bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
