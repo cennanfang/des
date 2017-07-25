@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cen.anno.orm.mapper.RoleFunMapper">
+
+	<!-- 结果集 -->
+	<resultMap id="roleResult" type="com.cen.anno.orm.model.Role">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="available" column="available" />
+		<result property="createDate" column="create_date" />
+		<result property="updateDate" column="update_date" />
+		<result property="description" column="description" />
+	</resultMap>
+
+	<select id="select" parameterType="Integer" resultMap="roleResult">
+		select * from t_role where id=#{id}
+	</select>
+
+ 	<select id="selectParam" parameterType="java.util.Map" resultType="com.cen.anno.orm.model.Role">
+		select * from role
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name like #{name}</if>
+				<if test="available != null">and available like #{available}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="updateDate != null">and update_date=#{updateDate}</if>
+				<if test="description != null">and description like #{description}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name=#{name}</if>
+				<if test="available != null">and available=#{available}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="updateDate != null">and update_date=#{updateDate}</if>
+				<if test="description != null">and description=#{description}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+		<if test="orderColumn != null">
+ 			order by ${orderColumn}
+ 			<if test="orderTurn != null">
+ 				${orderTurn}
+ 			</if>
+ 		</if>
+ 	</select> 
+
+	<insert id="insert" parameterType="com.cen.anno.orm.model.Role">
+		insert into t_role(name, available, create_date, update_date, description) values(#{name}, #{available}, #{createDate}, #{updateDate}, #{description})
+	</insert>
+
+	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into t_role(name, available, create_date, update_date, description) values
+		<foreach item="item" collection="list" separator=", ">
+			(#{name}, #{available}, #{createDate}, #{updateDate}, #{description})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cen.anno.orm.model.Role">
+		update t_role
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="available != null">available=#{available},</if>
+			<if test="createDate != null">create_date=#{createDate},</if>
+			<if test="updateDate != null">update_date=#{updateDate},</if>
+			<if test="description != null">description=#{description},</if>
+		</set>
+		</trim>
+		where id=#{id}
+	</update>
+
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="com.cen.anno.orm.model.Role" separator=";">
+		update t_role
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="available != null">available=#{available},</if>
+			<if test="createDate != null">create_date=#{createDate},</if>
+			<if test="updateDate != null">update_date=#{updateDate},</if>
+			<if test="description != null">description=#{description},</if>
+		</set>
+		</trim>
+		where id=#{id}
+		</foreach>
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_role where id=#{id}
+	</delete>
+
+	<delete id="deleteParam" parameterType="java.util.Map">
+		delete from t_role
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name like #{name}</if>
+				<if test="available != null">and available like #{available}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="updateDate != null">and update_date=#{updateDate}</if>
+				<if test="description != null">and description like #{description}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name=#{name}</if>
+				<if test="available != null">and available=#{available}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="updateDate != null">and update_date=#{updateDate}</if>
+				<if test="description != null">and description=#{description}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+
+	</delete>
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from t_role where id in 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="pk" separator=","> 
+ 				#{pk}
+			</foreach>
+		</trim>
+	</delete>
+
+	<select id="count" resultType="int">
+		select count(*) from t_role
+	</select>
+
+	<select id="countParam" parameterType="java.util.Map" resultType="int">
+		select count(*) from t_role
+		<where>
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name like #{name}</if>
+				<if test="available != null">and available like #{available}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="updateDate != null">and update_date=#{updateDate}</if>
+				<if test="description != null">and description like #{description}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name=#{name}</if>
+				<if test="available != null">and available=#{available}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="updateDate != null">and update_date=#{updateDate}</if>
+				<if test="description != null">and description=#{description}</if>
+			</otherwise>
+			</choose>
+		</where>
+	</select>
+
+</mapper>

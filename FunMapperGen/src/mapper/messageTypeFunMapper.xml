@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cen.anno.orm.mapper.MessageTypeFunMapper">
+
+	<!-- 结果集 -->
+	<resultMap id="messageTypeResult" type="com.cen.anno.orm.model.MessageType">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="available" column="available" />
+	</resultMap>
+
+	<select id="select" parameterType="Integer" resultMap="messageTypeResult">
+		select * from t_message_type where id=#{id}
+	</select>
+
+ 	<select id="selectParam" parameterType="java.util.Map" resultType="com.cen.anno.orm.model.MessageType">
+		select * from messageType
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name like #{name}</if>
+				<if test="description != null">and description like #{description}</if>
+				<if test="available != null">and available like #{available}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name=#{name}</if>
+				<if test="description != null">and description=#{description}</if>
+				<if test="available != null">and available=#{available}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+		<if test="orderColumn != null">
+ 			order by ${orderColumn}
+ 			<if test="orderTurn != null">
+ 				${orderTurn}
+ 			</if>
+ 		</if>
+ 	</select> 
+
+	<insert id="insert" parameterType="com.cen.anno.orm.model.MessageType">
+		insert into t_message_type(name, description, available) values(#{name}, #{description}, #{available})
+	</insert>
+
+	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into t_message_type(name, description, available) values
+		<foreach item="item" collection="list" separator=", ">
+			(#{name}, #{description}, #{available})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cen.anno.orm.model.MessageType">
+		update t_message_type
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="description != null">description=#{description},</if>
+			<if test="available != null">available=#{available},</if>
+		</set>
+		</trim>
+		where id=#{id}
+	</update>
+
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="com.cen.anno.orm.model.MessageType" separator=";">
+		update t_message_type
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="description != null">description=#{description},</if>
+			<if test="available != null">available=#{available},</if>
+		</set>
+		</trim>
+		where id=#{id}
+		</foreach>
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_message_type where id=#{id}
+	</delete>
+
+	<delete id="deleteParam" parameterType="java.util.Map">
+		delete from t_message_type
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name like #{name}</if>
+				<if test="description != null">and description like #{description}</if>
+				<if test="available != null">and available like #{available}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name=#{name}</if>
+				<if test="description != null">and description=#{description}</if>
+				<if test="available != null">and available=#{available}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+
+	</delete>
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from t_message_type where id in 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="pk" separator=","> 
+ 				#{pk}
+			</foreach>
+		</trim>
+	</delete>
+
+	<select id="count" resultType="int">
+		select count(*) from t_message_type
+	</select>
+
+	<select id="countParam" parameterType="java.util.Map" resultType="int">
+		select count(*) from t_message_type
+		<where>
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name like #{name}</if>
+				<if test="description != null">and description like #{description}</if>
+				<if test="available != null">and available like #{available}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="name != null">and name=#{name}</if>
+				<if test="description != null">and description=#{description}</if>
+				<if test="available != null">and available=#{available}</if>
+			</otherwise>
+			</choose>
+		</where>
+	</select>
+
+</mapper>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cen.anno.orm.mapper.PermissionFunMapper">
+
+	<!-- 结果集 -->
+	<resultMap id="permissionResult" type="com.cen.anno.orm.model.Permission">
+		<id property="id" column="id" />
+		<result property="token" column="token" />
+		<result property="url" column="url" />
+		<result property="available" column="available" />
+		<result property="description" column="description" />
+		<association property="role" column="role_id" javaType="Role" select="selectRole"/>
+	</resultMap>
+
+	<select id="selectRole" resultMap="com.cen.anno.orm.mapper.RoleFunMapper.roleResult">
+		select * from t_role where id=#{id}
+	</select>
+
+	<select id="select" parameterType="Integer" resultMap="permissionResult">
+		select * from t_permission where id=#{id}
+	</select>
+
+ 	<select id="selectParam" parameterType="java.util.Map" resultType="com.cen.anno.orm.model.Permission">
+		select * from permission
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="role.id != null">and role_id=#{role.id}</if>
+				<if test="token != null">and token like #{token}</if>
+				<if test="url != null">and url like #{url}</if>
+				<if test="available != null">and available like #{available}</if>
+				<if test="description != null">and description like #{description}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="role.id != null">and role_id=#{role.id}</if>
+				<if test="token != null">and token=#{token}</if>
+				<if test="url != null">and url=#{url}</if>
+				<if test="available != null">and available=#{available}</if>
+				<if test="description != null">and description=#{description}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+		<if test="orderColumn != null">
+ 			order by ${orderColumn}
+ 			<if test="orderTurn != null">
+ 				${orderTurn}
+ 			</if>
+ 		</if>
+ 	</select> 
+
+	<insert id="insert" parameterType="com.cen.anno.orm.model.Permission">
+		insert into t_permission(role_id, token, url, available, description) values(#{role.id}, #{token}, #{url}, #{available}, #{description})
+	</insert>
+
+	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into t_permission(role_id, token, url, available, description) values
+		<foreach item="item" collection="list" separator=", ">
+			(#{role.id}, #{token}, #{url}, #{available}, #{description})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cen.anno.orm.model.Permission">
+		update t_permission
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="role.id != null">role_id=#{role.id},</if>
+			<if test="token != null">token=#{token},</if>
+			<if test="url != null">url=#{url},</if>
+			<if test="available != null">available=#{available},</if>
+			<if test="description != null">description=#{description},</if>
+		</set>
+		</trim>
+		where id=#{id}
+	</update>
+
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="com.cen.anno.orm.model.Permission" separator=";">
+		update t_permission
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="role.id != null">role_id=#{role.id},</if>
+			<if test="token != null">token=#{token},</if>
+			<if test="url != null">url=#{url},</if>
+			<if test="available != null">available=#{available},</if>
+			<if test="description != null">description=#{description},</if>
+		</set>
+		</trim>
+		where id=#{id}
+		</foreach>
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_permission where id=#{id}
+	</delete>
+
+	<delete id="deleteParam" parameterType="java.util.Map">
+		delete from t_permission
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="role.id != null">and role_id=#{role.id}</if>
+				<if test="token != null">and token like #{token}</if>
+				<if test="url != null">and url like #{url}</if>
+				<if test="available != null">and available like #{available}</if>
+				<if test="description != null">and description like #{description}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="role.id != null">and role_id=#{role.id}</if>
+				<if test="token != null">and token=#{token}</if>
+				<if test="url != null">and url=#{url}</if>
+				<if test="available != null">and available=#{available}</if>
+				<if test="description != null">and description=#{description}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+
+	</delete>
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from t_permission where id in 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="pk" separator=","> 
+ 				#{pk}
+			</foreach>
+		</trim>
+	</delete>
+
+	<select id="count" resultType="int">
+		select count(*) from t_permission
+	</select>
+
+	<select id="countParam" parameterType="java.util.Map" resultType="int">
+		select count(*) from t_permission
+		<where>
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="role.id != null">and role_id=#{role.id}</if>
+				<if test="token != null">and token like #{token}</if>
+				<if test="url != null">and url like #{url}</if>
+				<if test="available != null">and available like #{available}</if>
+				<if test="description != null">and description like #{description}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="role.id != null">and role_id=#{role.id}</if>
+				<if test="token != null">and token=#{token}</if>
+				<if test="url != null">and url=#{url}</if>
+				<if test="available != null">and available=#{available}</if>
+				<if test="description != null">and description=#{description}</if>
+			</otherwise>
+			</choose>
+		</where>
+	</select>
+
+</mapper>

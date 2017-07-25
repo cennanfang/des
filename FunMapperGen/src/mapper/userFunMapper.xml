@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cen.anno.orm.mapper.UserFunMapper">
+
+	<!-- 结果集 -->
+	<resultMap id="userResult" type="com.cen.anno.orm.model.User">
+		<id property="id" column="id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="salt" column="salt" />
+		<result property="locked" column="locked" />
+		<result property="nickName" column="nick_name" />
+		<result property="sex" column="sex" />
+		<result property="age" column="age" />
+		<result property="phone" column="phone" />
+		<result property="email" column="email" />
+		<result property="address" column="address" />
+		<result property="registerDate" column="register_date" />
+	</resultMap>
+
+	<select id="select" parameterType="Integer" resultMap="userResult">
+		select * from t_user where id=#{id}
+	</select>
+
+ 	<select id="selectParam" parameterType="java.util.Map" resultType="com.cen.anno.orm.model.User">
+		select * from user
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="userName != null">and user_name like #{userName}</if>
+				<if test="password != null">and password like #{password}</if>
+				<if test="salt != null">and salt like #{salt}</if>
+				<if test="locked != null">and locked like #{locked}</if>
+				<if test="nickName != null">and nick_name like #{nickName}</if>
+				<if test="sex != null">and sex like #{sex}</if>
+				<if test="age != null">and age=#{age}</if>
+				<if test="phone != null">and phone like #{phone}</if>
+				<if test="email != null">and email like #{email}</if>
+				<if test="address != null">and address like #{address}</if>
+				<if test="registerDate != null">and register_date=#{registerDate}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="userName != null">and user_name=#{userName}</if>
+				<if test="password != null">and password=#{password}</if>
+				<if test="salt != null">and salt=#{salt}</if>
+				<if test="locked != null">and locked=#{locked}</if>
+				<if test="nickName != null">and nick_name=#{nickName}</if>
+				<if test="sex != null">and sex=#{sex}</if>
+				<if test="age != null">and age=#{age}</if>
+				<if test="phone != null">and phone=#{phone}</if>
+				<if test="email != null">and email=#{email}</if>
+				<if test="address != null">and address=#{address}</if>
+				<if test="registerDate != null">and register_date=#{registerDate}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+		<if test="orderColumn != null">
+ 			order by ${orderColumn}
+ 			<if test="orderTurn != null">
+ 				${orderTurn}
+ 			</if>
+ 		</if>
+ 	</select> 
+
+	<insert id="insert" parameterType="com.cen.anno.orm.model.User">
+		insert into t_user(user_name, password, salt, locked, nick_name, sex, age, phone, email, address, register_date) values(#{userName}, #{password}, #{salt}, #{locked}, #{nickName}, #{sex}, #{age}, #{phone}, #{email}, #{address}, #{registerDate})
+	</insert>
+
+	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into t_user(user_name, password, salt, locked, nick_name, sex, age, phone, email, address, register_date) values
+		<foreach item="item" collection="list" separator=", ">
+			(#{userName}, #{password}, #{salt}, #{locked}, #{nickName}, #{sex}, #{age}, #{phone}, #{email}, #{address}, #{registerDate})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cen.anno.orm.model.User">
+		update t_user
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="userName != null">user_name=#{userName},</if>
+			<if test="password != null">password=#{password},</if>
+			<if test="salt != null">salt=#{salt},</if>
+			<if test="locked != null">locked=#{locked},</if>
+			<if test="nickName != null">nick_name=#{nickName},</if>
+			<if test="sex != null">sex=#{sex},</if>
+			<if test="age != null">age=#{age},</if>
+			<if test="phone != null">phone=#{phone},</if>
+			<if test="email != null">email=#{email},</if>
+			<if test="address != null">address=#{address},</if>
+			<if test="registerDate != null">register_date=#{registerDate},</if>
+		</set>
+		</trim>
+		where id=#{id}
+	</update>
+
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="com.cen.anno.orm.model.User" separator=";">
+		update t_user
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="userName != null">user_name=#{userName},</if>
+			<if test="password != null">password=#{password},</if>
+			<if test="salt != null">salt=#{salt},</if>
+			<if test="locked != null">locked=#{locked},</if>
+			<if test="nickName != null">nick_name=#{nickName},</if>
+			<if test="sex != null">sex=#{sex},</if>
+			<if test="age != null">age=#{age},</if>
+			<if test="phone != null">phone=#{phone},</if>
+			<if test="email != null">email=#{email},</if>
+			<if test="address != null">address=#{address},</if>
+			<if test="registerDate != null">register_date=#{registerDate},</if>
+		</set>
+		</trim>
+		where id=#{id}
+		</foreach>
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_user where id=#{id}
+	</delete>
+
+	<delete id="deleteParam" parameterType="java.util.Map">
+		delete from t_user
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="userName != null">and user_name like #{userName}</if>
+				<if test="password != null">and password like #{password}</if>
+				<if test="salt != null">and salt like #{salt}</if>
+				<if test="locked != null">and locked like #{locked}</if>
+				<if test="nickName != null">and nick_name like #{nickName}</if>
+				<if test="sex != null">and sex like #{sex}</if>
+				<if test="age != null">and age=#{age}</if>
+				<if test="phone != null">and phone like #{phone}</if>
+				<if test="email != null">and email like #{email}</if>
+				<if test="address != null">and address like #{address}</if>
+				<if test="registerDate != null">and register_date=#{registerDate}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="userName != null">and user_name=#{userName}</if>
+				<if test="password != null">and password=#{password}</if>
+				<if test="salt != null">and salt=#{salt}</if>
+				<if test="locked != null">and locked=#{locked}</if>
+				<if test="nickName != null">and nick_name=#{nickName}</if>
+				<if test="sex != null">and sex=#{sex}</if>
+				<if test="age != null">and age=#{age}</if>
+				<if test="phone != null">and phone=#{phone}</if>
+				<if test="email != null">and email=#{email}</if>
+				<if test="address != null">and address=#{address}</if>
+				<if test="registerDate != null">and register_date=#{registerDate}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+
+	</delete>
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from t_user where id in 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="pk" separator=","> 
+ 				#{pk}
+			</foreach>
+		</trim>
+	</delete>
+
+	<select id="count" resultType="int">
+		select count(*) from t_user
+	</select>
+
+	<select id="countParam" parameterType="java.util.Map" resultType="int">
+		select count(*) from t_user
+		<where>
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="userName != null">and user_name like #{userName}</if>
+				<if test="password != null">and password like #{password}</if>
+				<if test="salt != null">and salt like #{salt}</if>
+				<if test="locked != null">and locked like #{locked}</if>
+				<if test="nickName != null">and nick_name like #{nickName}</if>
+				<if test="sex != null">and sex like #{sex}</if>
+				<if test="age != null">and age=#{age}</if>
+				<if test="phone != null">and phone like #{phone}</if>
+				<if test="email != null">and email like #{email}</if>
+				<if test="address != null">and address like #{address}</if>
+				<if test="registerDate != null">and register_date=#{registerDate}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="userName != null">and user_name=#{userName}</if>
+				<if test="password != null">and password=#{password}</if>
+				<if test="salt != null">and salt=#{salt}</if>
+				<if test="locked != null">and locked=#{locked}</if>
+				<if test="nickName != null">and nick_name=#{nickName}</if>
+				<if test="sex != null">and sex=#{sex}</if>
+				<if test="age != null">and age=#{age}</if>
+				<if test="phone != null">and phone=#{phone}</if>
+				<if test="email != null">and email=#{email}</if>
+				<if test="address != null">and address=#{address}</if>
+				<if test="registerDate != null">and register_date=#{registerDate}</if>
+			</otherwise>
+			</choose>
+		</where>
+	</select>
+
+</mapper>

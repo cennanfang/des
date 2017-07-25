@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cen.anno.orm.mapper.MessageFunMapper">
+
+	<!-- 结果集 -->
+	<resultMap id="messageResult" type="com.cen.anno.orm.model.Message">
+		<id property="id" column="id" />
+		<result property="content" column="content" />
+		<result property="contacts" column="contacts" />
+		<result property="createDate" column="create_date" />
+		<result property="publishedDate" column="published_date" />
+		<association property="user" column="user_id" javaType="User" select="selectUser"/>
+		<association property="messageType" column="type_id" javaType="MessageType" select="selectMessageType"/>
+	</resultMap>
+
+	<select id="selectUser" resultMap="com.cen.anno.orm.mapper.UserFunMapper.userResult">
+		select * from t_user where id=#{id}
+	</select>
+
+	<select id="selectMessageType" resultMap="com.cen.anno.orm.mapper.MessageTypeFunMapper.messageTypeResult">
+		select * from t_message_type where id=#{id}
+	</select>
+
+	<select id="select" parameterType="Integer" resultMap="messageResult">
+		select * from t_message where id=#{id}
+	</select>
+
+ 	<select id="selectParam" parameterType="java.util.Map" resultType="com.cen.anno.orm.model.Message">
+		select * from message
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="user.id != null">and user_id=#{user.id}</if>
+				<if test="messageType.id != null">and type_id=#{messageType.id}</if>
+				<if test="content != null">and content like #{content}</if>
+				<if test="contacts != null">and contacts like #{contacts}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="publishedDate != null">and published_date=#{publishedDate}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="user.id != null">and user_id=#{user.id}</if>
+				<if test="messageType.id != null">and type_id=#{messageType.id}</if>
+				<if test="content != null">and content=#{content}</if>
+				<if test="contacts != null">and contacts=#{contacts}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="publishedDate != null">and published_date=#{publishedDate}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+		<if test="orderColumn != null">
+ 			order by ${orderColumn}
+ 			<if test="orderTurn != null">
+ 				${orderTurn}
+ 			</if>
+ 		</if>
+ 	</select> 
+
+	<insert id="insert" parameterType="com.cen.anno.orm.model.Message">
+		insert into t_message(user_id, type_id, content, contacts, create_date, published_date) values(#{user.id}, #{messageType.id}, #{content}, #{contacts}, #{createDate}, #{publishedDate})
+	</insert>
+
+	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into t_message(user_id, type_id, content, contacts, create_date, published_date) values
+		<foreach item="item" collection="list" separator=", ">
+			(#{user.id}, #{messageType.id}, #{content}, #{contacts}, #{createDate}, #{publishedDate})
+		</foreach>
+	</insert>
+
+	<update id="update" parameterType="com.cen.anno.orm.model.Message">
+		update t_message
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="user.id != null">user_id=#{user.id},</if>
+			<if test="messageType.id != null">type_id=#{messageType.id},</if>
+			<if test="content != null">content=#{content},</if>
+			<if test="contacts != null">contacts=#{contacts},</if>
+			<if test="createDate != null">create_date=#{createDate},</if>
+			<if test="publishedDate != null">published_date=#{publishedDate},</if>
+		</set>
+		</trim>
+		where id=#{id}
+	</update>
+
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="com.cen.anno.orm.model.Message" separator=";">
+		update t_message
+		<trim prefix="set" suffixOverrides=",">
+		<set>
+			<if test="user.id != null">user_id=#{user.id},</if>
+			<if test="messageType.id != null">type_id=#{messageType.id},</if>
+			<if test="content != null">content=#{content},</if>
+			<if test="contacts != null">contacts=#{contacts},</if>
+			<if test="createDate != null">create_date=#{createDate},</if>
+			<if test="publishedDate != null">published_date=#{publishedDate},</if>
+		</set>
+		</trim>
+		where id=#{id}
+		</foreach>
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_message where id=#{id}
+	</delete>
+
+	<delete id="deleteParam" parameterType="java.util.Map">
+		delete from t_message
+		<trim prefix="where" prefixOverrides="and">
+		<where>	
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="user.id != null">and user_id=#{user.id}</if>
+				<if test="messageType.id != null">and type_id=#{messageType.id}</if>
+				<if test="content != null">and content like #{content}</if>
+				<if test="contacts != null">and contacts like #{contacts}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="publishedDate != null">and published_date=#{publishedDate}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="user.id != null">and user_id=#{user.id}</if>
+				<if test="messageType.id != null">and type_id=#{messageType.id}</if>
+				<if test="content != null">and content=#{content}</if>
+				<if test="contacts != null">and contacts=#{contacts}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="publishedDate != null">and published_date=#{publishedDate}</if>
+			</otherwise>
+			</choose>
+		</where>
+		</trim>
+
+	</delete>
+	<delete id="deleteBatch" parameterType="java.util.List">
+		delete from t_message where id in 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="pk" separator=","> 
+ 				#{pk}
+			</foreach>
+		</trim>
+	</delete>
+
+	<select id="count" resultType="int">
+		select count(*) from t_message
+	</select>
+
+	<select id="countParam" parameterType="java.util.Map" resultType="int">
+		select count(*) from t_message
+		<where>
+			<choose>
+			<when test="stringUseLike != null and stringUseLike = 1">
+				<if test="id != null">and id=#{id}</if>
+				<if test="user.id != null">and user_id=#{user.id}</if>
+				<if test="messageType.id != null">and type_id=#{messageType.id}</if>
+				<if test="content != null">and content like #{content}</if>
+				<if test="contacts != null">and contacts like #{contacts}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="publishedDate != null">and published_date=#{publishedDate}</if>
+			</when>
+			<otherwise>
+				<if test="id != null">and id=#{id}</if>
+				<if test="user.id != null">and user_id=#{user.id}</if>
+				<if test="messageType.id != null">and type_id=#{messageType.id}</if>
+				<if test="content != null">and content=#{content}</if>
+				<if test="contacts != null">and contacts=#{contacts}</if>
+				<if test="createDate != null">and create_date=#{createDate}</if>
+				<if test="publishedDate != null">and published_date=#{publishedDate}</if>
+			</otherwise>
+			</choose>
+		</where>
+	</select>
+
+</mapper>
