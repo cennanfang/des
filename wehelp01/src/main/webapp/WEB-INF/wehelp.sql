@@ -6,7 +6,7 @@ use wehelp;
 --用户表
 DROP TABLE IF EXISTS `t_user`;  
 CREATE TABLE `t_user` (  
-  `id` int(11) NOT NULL AUTO_INCREMENT,  
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '唯一标识',  
   `user_name` varchar(255) NOT NULL unique, 
   `password` varchar(64) NOT NULL,
   `salt` varchar(32) DEFAULT NULL COMMENT '盐',  
