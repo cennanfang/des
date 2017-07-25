@@ -194,5 +194,31 @@ public class XmlUtils {
 		return sb.toString();
 	}
 	
+	/**
+	 * 加入排序判断
+	 * @return
+	 */
+	public static String addOrderBy() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("\t\t<if test=\"orderColumn != null\">\r\n ");
+		sb.append("\t\t\torder by ${orderColumn}\r\n ");
+		sb.append("\t\t\t<if test=\"orderTurn != null\">\r\n ");
+		sb.append("\t\t\t\t${orderTurn}\r\n ");
+		sb.append("\t\t\t</if>\r\n ");
+		sb.append("\t\t</if>\r\n ");
+		return sb.toString();
+	}
+	
+	/**
+	 * 加入段判断
+	 * @return
+	 */
+	public static String addBetweenWith() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("\t\t\t<if test=\"betweenAndColumn != null\">\r\n ");
+		sb.append("\t\t\t\t and ${betweenAndColumn} between ${betweenStart} and ${betweenEnd}\r\n ");
+		sb.append("\t\t\t</if>\r\n ");
+		return sb.toString();
+	}
 	
 }

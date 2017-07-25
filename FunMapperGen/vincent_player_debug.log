@@ -1,0 +1,180 @@
+2017-07-25 21:45:03  [ main:0 ] - [ INFO ]  modelsPath=D:/github/signal01/src/main/java/com/cen/signal/model
+2017-07-25 21:45:03  [ main:6 ] - [ INFO ]  read model : com.cen.signal.model.Message
+2017-07-25 21:45:03  [ main:6 ] - [ INFO ]  read model : com.cen.signal.model.MessageType
+2017-07-25 21:45:03  [ main:6 ] - [ INFO ]  read model : com.cen.signal.model.Permission
+2017-07-25 21:45:03  [ main:9 ] - [ INFO ]  read model : com.cen.signal.model.Role
+2017-07-25 21:45:03  [ main:9 ] - [ INFO ]  read model : com.cen.signal.model.User
+2017-07-25 21:45:03  [ main:9 ] - [ INFO ]  read model : com.cen.signal.model.UserRole
+2017-07-25 21:45:03  [ main:14 ] - [ INFO ]  retrieve class : com.cen.signal.model.Message
+2017-07-25 21:45:03  [ main:46 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:45:03  [ main:54 ] - [ DEBUG ]  property : user column ： user_id java type : User
+2017-07-25 21:45:03  [ main:55 ] - [ DEBUG ]  property : messageType column ： type_id java type : MessageType
+2017-07-25 21:45:03  [ main:56 ] - [ DEBUG ]  property : content column ： content java type : String
+2017-07-25 21:45:03  [ main:57 ] - [ DEBUG ]  property : contacts column ： contacts java type : String
+2017-07-25 21:45:03  [ main:57 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:45:03  [ main:58 ] - [ DEBUG ]  property : publishedDate column ： published_date java type : Date
+2017-07-25 21:45:03  [ main:59 ] - [ INFO ]  retrieve class : com.cen.signal.model.MessageType
+2017-07-25 21:45:03  [ main:66 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:45:03  [ main:67 ] - [ DEBUG ]  property : name column ： name java type : String
+2017-07-25 21:45:03  [ main:73 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:45:03  [ main:74 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:45:03  [ main:76 ] - [ INFO ]  retrieve class : com.cen.signal.model.Permission
+2017-07-25 21:45:03  [ main:83 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:45:03  [ main:85 ] - [ DEBUG ]  property : role column ： role_id java type : Role
+2017-07-25 21:45:03  [ main:89 ] - [ DEBUG ]  property : token column ： token java type : String
+2017-07-25 21:45:03  [ main:101 ] - [ DEBUG ]  property : url column ： url java type : String
+2017-07-25 21:45:03  [ main:105 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:45:03  [ main:105 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:45:03  [ main:106 ] - [ INFO ]  retrieve class : com.cen.signal.model.Role
+2017-07-25 21:45:03  [ main:107 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:45:03  [ main:108 ] - [ DEBUG ]  property : name column ： name java type : String
+2017-07-25 21:45:03  [ main:108 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:45:03  [ main:112 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:45:03  [ main:113 ] - [ DEBUG ]  property : updateDate column ： update_date java type : Date
+2017-07-25 21:45:03  [ main:116 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:45:03  [ main:117 ] - [ INFO ]  retrieve class : com.cen.signal.model.User
+2017-07-25 21:45:03  [ main:119 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:45:03  [ main:120 ] - [ DEBUG ]  property : userName column ： user_name java type : String
+2017-07-25 21:45:03  [ main:120 ] - [ DEBUG ]  property : password column ： password java type : String
+2017-07-25 21:45:03  [ main:121 ] - [ DEBUG ]  property : salt column ： salt java type : String
+2017-07-25 21:45:03  [ main:122 ] - [ DEBUG ]  property : locked column ： locked java type : String
+2017-07-25 21:45:03  [ main:124 ] - [ DEBUG ]  property : nickName column ： nick_name java type : String
+2017-07-25 21:45:03  [ main:126 ] - [ DEBUG ]  property : sex column ： sex java type : String
+2017-07-25 21:45:03  [ main:129 ] - [ DEBUG ]  property : age column ： age java type : Integer
+2017-07-25 21:45:03  [ main:132 ] - [ DEBUG ]  property : phone column ： phone java type : String
+2017-07-25 21:45:03  [ main:133 ] - [ DEBUG ]  property : email column ： email java type : String
+2017-07-25 21:45:03  [ main:134 ] - [ DEBUG ]  property : address column ： address java type : String
+2017-07-25 21:45:03  [ main:135 ] - [ DEBUG ]  property : registerDate column ： register_date java type : Date
+2017-07-25 21:45:03  [ main:137 ] - [ INFO ]  retrieve class : com.cen.signal.model.UserRole
+2017-07-25 21:45:03  [ main:138 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:45:03  [ main:139 ] - [ DEBUG ]  property : user column ： user_id java type : User
+2017-07-25 21:45:03  [ main:139 ] - [ DEBUG ]  property : role column ： role_id java type : Role
+2017-07-25 21:45:03  [ main:140 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:45:03  [ main:141 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:45:03  [ main:141 ] - [ DEBUG ]  property : updateDate column ： update_date java type : Date
+2017-07-25 21:45:03  [ main:144 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Message
+2017-07-25 21:45:03  [ main:269 ] - [ INFO ]  create mapper xml for com.cen.signal.model.MessageType
+2017-07-25 21:45:03  [ main:306 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Permission
+2017-07-25 21:45:03  [ main:370 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Role
+2017-07-25 21:45:03  [ main:425 ] - [ INFO ]  create mapper xml for com.cen.signal.model.User
+2017-07-25 21:45:03  [ main:479 ] - [ INFO ]  create mapper xml for com.cen.signal.model.UserRole
+2017-07-25 21:46:15  [ main:0 ] - [ INFO ]  modelsPath=D:/github/signal01/src/main/java/com/cen/signal/model
+2017-07-25 21:46:15  [ main:8 ] - [ INFO ]  read model : com.cen.signal.model.Message
+2017-07-25 21:46:15  [ main:8 ] - [ INFO ]  read model : com.cen.signal.model.MessageType
+2017-07-25 21:46:15  [ main:9 ] - [ INFO ]  read model : com.cen.signal.model.Permission
+2017-07-25 21:46:15  [ main:13 ] - [ INFO ]  read model : com.cen.signal.model.Role
+2017-07-25 21:46:15  [ main:13 ] - [ INFO ]  read model : com.cen.signal.model.User
+2017-07-25 21:46:15  [ main:14 ] - [ INFO ]  read model : com.cen.signal.model.UserRole
+2017-07-25 21:46:15  [ main:17 ] - [ INFO ]  retrieve class : com.cen.signal.model.Message
+2017-07-25 21:46:15  [ main:46 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:46:15  [ main:54 ] - [ DEBUG ]  property : user column ： user_id java type : User
+2017-07-25 21:46:15  [ main:55 ] - [ DEBUG ]  property : messageType column ： type_id java type : MessageType
+2017-07-25 21:46:15  [ main:56 ] - [ DEBUG ]  property : content column ： content java type : String
+2017-07-25 21:46:15  [ main:56 ] - [ DEBUG ]  property : contacts column ： contacts java type : String
+2017-07-25 21:46:15  [ main:57 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:46:15  [ main:57 ] - [ DEBUG ]  property : publishedDate column ： published_date java type : Date
+2017-07-25 21:46:15  [ main:58 ] - [ INFO ]  retrieve class : com.cen.signal.model.MessageType
+2017-07-25 21:46:15  [ main:65 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:46:15  [ main:66 ] - [ DEBUG ]  property : name column ： name java type : String
+2017-07-25 21:46:15  [ main:66 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:46:15  [ main:67 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:46:15  [ main:68 ] - [ INFO ]  retrieve class : com.cen.signal.model.Permission
+2017-07-25 21:46:15  [ main:71 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:46:15  [ main:72 ] - [ DEBUG ]  property : role column ： role_id java type : Role
+2017-07-25 21:46:15  [ main:74 ] - [ DEBUG ]  property : token column ： token java type : String
+2017-07-25 21:46:15  [ main:76 ] - [ DEBUG ]  property : url column ： url java type : String
+2017-07-25 21:46:15  [ main:76 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:46:15  [ main:77 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:46:15  [ main:77 ] - [ INFO ]  retrieve class : com.cen.signal.model.Role
+2017-07-25 21:46:15  [ main:78 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:46:15  [ main:79 ] - [ DEBUG ]  property : name column ： name java type : String
+2017-07-25 21:46:15  [ main:79 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:46:15  [ main:80 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:46:15  [ main:80 ] - [ DEBUG ]  property : updateDate column ： update_date java type : Date
+2017-07-25 21:46:15  [ main:81 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:46:15  [ main:81 ] - [ INFO ]  retrieve class : com.cen.signal.model.User
+2017-07-25 21:46:15  [ main:82 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:46:15  [ main:83 ] - [ DEBUG ]  property : userName column ： user_name java type : String
+2017-07-25 21:46:15  [ main:83 ] - [ DEBUG ]  property : password column ： password java type : String
+2017-07-25 21:46:15  [ main:84 ] - [ DEBUG ]  property : salt column ： salt java type : String
+2017-07-25 21:46:15  [ main:85 ] - [ DEBUG ]  property : locked column ： locked java type : String
+2017-07-25 21:46:15  [ main:85 ] - [ DEBUG ]  property : nickName column ： nick_name java type : String
+2017-07-25 21:46:15  [ main:86 ] - [ DEBUG ]  property : sex column ： sex java type : String
+2017-07-25 21:46:15  [ main:87 ] - [ DEBUG ]  property : age column ： age java type : Integer
+2017-07-25 21:46:15  [ main:88 ] - [ DEBUG ]  property : phone column ： phone java type : String
+2017-07-25 21:46:15  [ main:89 ] - [ DEBUG ]  property : email column ： email java type : String
+2017-07-25 21:46:15  [ main:89 ] - [ DEBUG ]  property : address column ： address java type : String
+2017-07-25 21:46:15  [ main:90 ] - [ DEBUG ]  property : registerDate column ： register_date java type : Date
+2017-07-25 21:46:15  [ main:92 ] - [ INFO ]  retrieve class : com.cen.signal.model.UserRole
+2017-07-25 21:46:15  [ main:93 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:46:15  [ main:93 ] - [ DEBUG ]  property : user column ： user_id java type : User
+2017-07-25 21:46:15  [ main:94 ] - [ DEBUG ]  property : role column ： role_id java type : Role
+2017-07-25 21:46:15  [ main:95 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:46:15  [ main:95 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:46:15  [ main:95 ] - [ DEBUG ]  property : updateDate column ： update_date java type : Date
+2017-07-25 21:46:15  [ main:98 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Message
+2017-07-25 21:46:15  [ main:122 ] - [ INFO ]  create mapper xml for com.cen.signal.model.MessageType
+2017-07-25 21:46:15  [ main:133 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Permission
+2017-07-25 21:46:15  [ main:140 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Role
+2017-07-25 21:46:15  [ main:146 ] - [ INFO ]  create mapper xml for com.cen.signal.model.User
+2017-07-25 21:46:15  [ main:153 ] - [ INFO ]  create mapper xml for com.cen.signal.model.UserRole
+2017-07-25 21:58:43  [ main:0 ] - [ INFO ]  modelsPath=D:/github/signal01/src/main/java/com/cen/signal/model
+2017-07-25 21:58:43  [ main:5 ] - [ INFO ]  read model : com.cen.signal.model.Message
+2017-07-25 21:58:43  [ main:5 ] - [ INFO ]  read model : com.cen.signal.model.MessageType
+2017-07-25 21:58:43  [ main:5 ] - [ INFO ]  read model : com.cen.signal.model.Permission
+2017-07-25 21:58:43  [ main:9 ] - [ INFO ]  read model : com.cen.signal.model.Role
+2017-07-25 21:58:43  [ main:9 ] - [ INFO ]  read model : com.cen.signal.model.User
+2017-07-25 21:58:43  [ main:10 ] - [ INFO ]  read model : com.cen.signal.model.UserRole
+2017-07-25 21:58:43  [ main:13 ] - [ INFO ]  retrieve class : com.cen.signal.model.Message
+2017-07-25 21:58:43  [ main:41 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:58:43  [ main:46 ] - [ DEBUG ]  property : user column ： user_id java type : User
+2017-07-25 21:58:43  [ main:49 ] - [ DEBUG ]  property : messageType column ： type_id java type : MessageType
+2017-07-25 21:58:43  [ main:50 ] - [ DEBUG ]  property : content column ： content java type : String
+2017-07-25 21:58:43  [ main:50 ] - [ DEBUG ]  property : contacts column ： contacts java type : String
+2017-07-25 21:58:43  [ main:52 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:58:43  [ main:53 ] - [ DEBUG ]  property : publishedDate column ： published_date java type : Date
+2017-07-25 21:58:43  [ main:53 ] - [ INFO ]  retrieve class : com.cen.signal.model.MessageType
+2017-07-25 21:58:43  [ main:58 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:58:43  [ main:59 ] - [ DEBUG ]  property : name column ： name java type : String
+2017-07-25 21:58:43  [ main:59 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:58:43  [ main:60 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:58:43  [ main:61 ] - [ INFO ]  retrieve class : com.cen.signal.model.Permission
+2017-07-25 21:58:43  [ main:64 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:58:43  [ main:65 ] - [ DEBUG ]  property : role column ： role_id java type : Role
+2017-07-25 21:58:43  [ main:66 ] - [ DEBUG ]  property : token column ： token java type : String
+2017-07-25 21:58:43  [ main:67 ] - [ DEBUG ]  property : url column ： url java type : String
+2017-07-25 21:58:43  [ main:68 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:58:43  [ main:69 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:58:43  [ main:71 ] - [ INFO ]  retrieve class : com.cen.signal.model.Role
+2017-07-25 21:58:43  [ main:73 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:58:43  [ main:74 ] - [ DEBUG ]  property : name column ： name java type : String
+2017-07-25 21:58:43  [ main:74 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:58:43  [ main:75 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:58:43  [ main:76 ] - [ DEBUG ]  property : updateDate column ： update_date java type : Date
+2017-07-25 21:58:43  [ main:77 ] - [ DEBUG ]  property : description column ： description java type : String
+2017-07-25 21:58:43  [ main:77 ] - [ INFO ]  retrieve class : com.cen.signal.model.User
+2017-07-25 21:58:43  [ main:78 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:58:43  [ main:78 ] - [ DEBUG ]  property : userName column ： user_name java type : String
+2017-07-25 21:58:43  [ main:79 ] - [ DEBUG ]  property : password column ： password java type : String
+2017-07-25 21:58:43  [ main:79 ] - [ DEBUG ]  property : salt column ： salt java type : String
+2017-07-25 21:58:43  [ main:79 ] - [ DEBUG ]  property : locked column ： locked java type : String
+2017-07-25 21:58:43  [ main:80 ] - [ DEBUG ]  property : nickName column ： nick_name java type : String
+2017-07-25 21:58:43  [ main:80 ] - [ DEBUG ]  property : sex column ： sex java type : String
+2017-07-25 21:58:43  [ main:80 ] - [ DEBUG ]  property : age column ： age java type : Integer
+2017-07-25 21:58:43  [ main:80 ] - [ DEBUG ]  property : phone column ： phone java type : String
+2017-07-25 21:58:43  [ main:81 ] - [ DEBUG ]  property : email column ： email java type : String
+2017-07-25 21:58:43  [ main:81 ] - [ DEBUG ]  property : address column ： address java type : String
+2017-07-25 21:58:43  [ main:81 ] - [ DEBUG ]  property : registerDate column ： register_date java type : Date
+2017-07-25 21:58:43  [ main:82 ] - [ INFO ]  retrieve class : com.cen.signal.model.UserRole
+2017-07-25 21:58:43  [ main:83 ] - [ DEBUG ]  property : id column ： id java type : Integer
+2017-07-25 21:58:43  [ main:83 ] - [ DEBUG ]  property : user column ： user_id java type : User
+2017-07-25 21:58:43  [ main:84 ] - [ DEBUG ]  property : role column ： role_id java type : Role
+2017-07-25 21:58:43  [ main:84 ] - [ DEBUG ]  property : available column ： available java type : String
+2017-07-25 21:58:43  [ main:84 ] - [ DEBUG ]  property : createDate column ： create_date java type : Date
+2017-07-25 21:58:43  [ main:85 ] - [ DEBUG ]  property : updateDate column ： update_date java type : Date
+2017-07-25 21:58:43  [ main:88 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Message
+2017-07-25 21:58:43  [ main:111 ] - [ INFO ]  create mapper xml for com.cen.signal.model.MessageType
+2017-07-25 21:58:43  [ main:156 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Permission
+2017-07-25 21:58:43  [ main:164 ] - [ INFO ]  create mapper xml for com.cen.signal.model.Role
+2017-07-25 21:58:43  [ main:172 ] - [ INFO ]  create mapper xml for com.cen.signal.model.User
+2017-07-25 21:58:43  [ main:179 ] - [ INFO ]  create mapper xml for com.cen.signal.model.UserRole
