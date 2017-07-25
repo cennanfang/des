@@ -123,7 +123,7 @@ public class XmlUtils {
 		sb.append(NameUtils.SQLID_STRING_USE_LIKE);
 		sb.append(" != null and ");
 		sb.append(NameUtils.SQLID_STRING_USE_LIKE);
-		sb.append(" = 1");
+		sb.append(" == 1");
 		sb.append("\">\r\n");
 		sb.append(getLikeConditions(mps));
 		sb.append("\t\t\t</when>\r\n");
