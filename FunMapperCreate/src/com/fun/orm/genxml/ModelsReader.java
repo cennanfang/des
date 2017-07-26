@@ -95,7 +95,6 @@ public class ModelsReader {
 		File[] files = new File[classNames.length];
 		for (int i = 0; i < files.length; i++) {
 			files[i] = new File(modelsPath + classNames[i].replace(".", File.separator) + ".class");
-			System.out.println(files[i].getAbsolutePath());
 		}
 		ClassUtils.deleteFiles(files);
 	}
