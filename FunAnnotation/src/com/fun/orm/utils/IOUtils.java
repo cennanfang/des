@@ -17,16 +17,6 @@ public class IOUtils {
 	}
 	
 	/**
-	 * 获取src文件夹路径
-	 * @return
-	 */
-	public static String getSrcPath() {
-		File directory = new File("");
-		String path = directory.getAbsolutePath() + "/src/";
-		return path;
-	}
-	
-	/**
 	 * 写成实体文件
 	 * @param content
 	 * @throws IOException

@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 
 import com.fun.orm.genmodel.bean.ConstraintInfo;
 import com.fun.orm.genmodel.bean.DatabaseConfig;
+import com.fun.orm.utils.Constants;
 import com.fun.orm.utils.IOUtils;
 import com.fun.orm.utils.NameUtils;
 
@@ -80,7 +81,7 @@ public class GenEntityMysql {
 					dir.mkdirs();
 				}
 				IOUtils.writeModelToFile(content, new File(writeDir, className + ".java"));
-				String outToDir =  IOUtils.PROJECT_JAVA_PATH + IOUtils.packageToPath(classPackage);
+				String outToDir =  Constants.PROJECT_JAVA_PATH + IOUtils.packageToPath(classPackage);
 				File outDir = new File(outToDir);
 				if(!outDir.exists()) {
 					outDir.mkdirs();

@@ -3,14 +3,11 @@ package com.fun.orm.genxml.creator;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import com.fun.orm.retrieve.ModelInfoHolder;
 import com.fun.orm.utils.Constants;
 import com.fun.orm.utils.NameUtils;
 
 public class XMLCreator {
-	private Logger logger  =  Logger.getLogger(XMLCreator.class);
 	private List<MethodCreator> createChain;
 	
 	public XMLCreator() {
@@ -18,7 +15,6 @@ public class XMLCreator {
 	}
 
 	public String create(ModelInfoHolder mih, String nameSpacePackage) {
-		logger.info("create mapper xml for " + mih.getClassName());
 		createChain.add(new ResultMapCreator(nameSpacePackage));
 		createChain.add(new SelectCreator());
 		createChain.add(new InsertCreator());

@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.fun.orm.mapper.CreateMappers;
 import com.fun.orm.retrieve.ModelInfoHolder;
+import com.fun.orm.utils.Constants;
 import com.fun.orm.utils.IOUtils;
 
 public class Generator {
@@ -19,7 +20,7 @@ public class Generator {
 		logger.info("modelsPath="+ modelsPath);
 		ModelsReader mr = new ModelsReader(modelPackage, modelsPath);
 		List<ModelInfoHolder> mihs = mr.excute();
-		String writeXmlPath = IOUtils.PROJECT_RESOUCES_PATH + "mybatis_mapper";
+		String writeXmlPath = Constants.PROJECT_RESOUCES_PATH + "mybatis_mapper";
 		XMLsGenerate mxg = new XMLsGenerate(mapperNameSpace);
 		mxg.generate(mihs, writeXmlPath);
 		CreateMappers cm = new CreateMappers();
@@ -28,7 +29,7 @@ public class Generator {
 	
 	public static void main(String[] args) {
 		try {
-			new Generator().generate(IOUtils.PROJECT_JAVA_PATH);
+			new Generator().generate(Constants.PROJECT_JAVA_PATH);
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
