@@ -46,9 +46,7 @@ public class InsertCreator implements MethodCreator {
 	private String createInsertBatch(ModelInfoHolder mih) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("\t<insert id=\"");
-		sb.append(Constants.SQLID_INSERT_BATCH + "\" parameterType=\"java.util.List\" useGeneratedKeys=\"true\" keyProperty=\"");
-		sb.append(getIdColumn(mih.getPropertyList()));
-		sb.append("\">\r\n");
+		sb.append(Constants.SQLID_INSERT_BATCH + "\" parameterType=\"java.util.List\">\r\n");
 		sb.append("\t\tinsert into ");
 		sb.append(mih.getTableName());
 		sb.append(getColumList(mih.getPropertyList()));
@@ -59,20 +57,6 @@ public class InsertCreator implements MethodCreator {
 		sb.append("\r\n\t\t</foreach>\r\n");
 		sb.append("\t</insert>\r\n\r\n");
 		return sb.toString();
-	}
-	
-	/**
-	 * 获得ID
-	 * @param mps
-	 * @return
-	 */
-	private String getIdColumn(List<ModelProperty> mps) {
-		for (ModelProperty mp : mps) {
-			if(mp instanceof PrimayProperty) {
-				return mp.getTableColumn();
-			}
-		}
-		return null;
 	}
 	
 	/**
@@ -111,7 +95,7 @@ public class InsertCreator implements MethodCreator {
 						 + NameUtils.underline2Camel(rp.getReferencedColumn(), true);
 			}
 			sb.append("#{");
-			sb.append(property);
+			sb.append("item." + property);
 			sb.append("}");
 			sb.append(", ");
 		}
