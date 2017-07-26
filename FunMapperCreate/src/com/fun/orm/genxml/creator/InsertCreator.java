@@ -31,7 +31,7 @@ public class InsertCreator implements MethodCreator {
 		sb.append("\t\tinsert into ");
 		sb.append(mih.getTableName());
 		sb.append(getColumList(mih.getPropertyList()));
-		sb.append(" values");
+		sb.append("\r\n\t\t\tvalues");
 		sb.append(getValuseList(mih.getPropertyList(), ""));
 		sb.append("\r\n");
 		sb.append("\t</insert>\r\n\r\n");

@@ -110,6 +110,24 @@ public class XmlUtils {
 	}
 	
 	/**
+	 * 参数型动态代码复用
+	 * @param mps
+	 * @return
+	 */
+	public static String addParamWhereConditions(List<ModelProperty> mps) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("\t<sql id=\"paramWhereCondition\">\r\n");
+		sb.append("\t\t<trim prefixOverrides=\"and\">\r\n");
+		sb.append("\t\t<where>\t\n");
+		sb.append(XmlUtils.getConditions(mps));
+		sb.append(XmlUtils.addBetweenWith());
+		sb.append("\t\t</where>\r\n");
+		sb.append("\t\t</trim>\r\n");
+		sb.append("\t</sql>\r\n\r\n");
+		return sb.toString();
+	}
+	
+	/**
 	 * 条件查询
 	 * @param mps
 	 * @return
@@ -219,4 +237,57 @@ public class XmlUtils {
 		return sb.toString();
 	}
 	
+	/**
+	 * 插入数据条件判断复用
+	 * @param mps
+	 * @return
+	 */
+	public static String addUpdateSetCondition(List<ModelProperty> mps) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("\t<sql id=\"updateSetCondition\">\r\n");
+		sb.append(getSetAndCondition(mps));
+		sb.append("\t</sql>\r\n\r\n");
+		return sb.toString();
+	}
+	
+	/**
+	 * 获取set和where
+	 * @param mps
+	 * @return
+	 */
+	public static String getSetAndCondition(List<ModelProperty> mps) {
+		StringBuffer sb = new StringBuffer();
+		String idCondition = null;
+		sb.append("\t\t<trim suffixOverrides=\",\">\r\n");
+		sb.append("\t\t<set>\r\n");
+		for(ModelProperty mp : mps) {
+			if(mp instanceof PrimayProperty) {
+				PrimayProperty pp = (PrimayProperty)mp;
+				idCondition = pp.getTableColumn() + "=#{" + pp.getModelProperty() + "}";
+				continue;
+			}
+			String property = mp.getModelProperty();
+			String colName = mp.getTableColumn();
+			sb.append("\t\t\t<if test=\"");
+			if(mp instanceof ReferencedProperty) {
+				ReferencedProperty rp = (ReferencedProperty)mp;
+				String refName = NameUtils.getLowerCaseClassName(rp.getJavaType());
+				property = refName  + "." + NameUtils.underline2Camel(rp.getReferencedColumn(), true);
+				sb.append(refName);
+				sb.append(" != null and ");
+			}
+			sb.append(property);
+			sb.append(" != null\">");
+			sb.append(colName);
+			sb.append("=#{");
+			sb.append(property);
+			sb.append("},</if>\r\n");
+		}
+		sb.append("\t\t</set>\r\n");
+		sb.append("\t\t</trim>\r\n");
+		sb.append("\t\twhere ");
+		sb.append(idCondition);
+		sb.append("\r\n");
+		return sb.toString();
+	}
 }

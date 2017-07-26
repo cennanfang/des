@@ -48,12 +48,7 @@ public class DeleteCreator implements MethodCreator {
 		sb.append(Constants.SQLID_DELETE_PARAM + "\" parameterType=\"java.util.Map\">\r\n");
 		sb.append("\t\tdelete from ");
 		sb.append(mih.getTableName());
-		sb.append("\r\n\t\t<trim prefixOverrides=\"and\">");
-		sb.append("\r\n\t\t<where>\t\n");
-		sb.append(XmlUtils.getConditions(mih.getPropertyList()));
-		sb.append(XmlUtils.addBetweenWith());
-		sb.append("\t\t</where>\r\n");
-		sb.append("\t\t</trim>\r\n");
+		sb.append("\r\n\t\t<include refid=\"paramWhereCondition\"/>\r\n");
 		sb.append("\t</delete>\r\n\r\n");
 		return sb.toString();
 	}

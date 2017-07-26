@@ -53,12 +53,7 @@ public class SelectCreator implements MethodCreator {
 		sb.append("Result\">\r\n");
 		sb.append("\t\tselect * from ");
 		sb.append(mih.getTableName());
-		sb.append("\r\n\t\t<trim prefixOverrides=\"and\">");
-		sb.append("\r\n\t\t<where>\t\n");
-		sb.append(XmlUtils.getConditions(mih.getPropertyList()));
-		sb.append(XmlUtils.addBetweenWith());
-		sb.append("\t\t</where>\r\n");
-		sb.append("\t\t</trim>\r\n");
+		sb.append("\r\n\t\t<include refid=\"paramWhereCondition\"/>\r\n");
 		sb.append(XmlUtils.addOrderBy());
 		sb.append("\t</select> \r\n\r\n");
 		return sb.toString();

@@ -6,6 +6,7 @@ import java.util.List;
 import com.fun.orm.retrieve.ModelInfoHolder;
 import com.fun.orm.utils.Constants;
 import com.fun.orm.utils.NameUtils;
+import com.fun.orm.utils.XmlUtils;
 
 public class XMLCreator {
 	private List<MethodCreator> createChain;
@@ -31,6 +32,8 @@ public class XMLCreator {
 		for(MethodCreator mc : createChain) {
 			mc.create(sb, mih);
 		}
+		sb.append(XmlUtils.addParamWhereConditions(mih.getPropertyList()));
+		sb.append(XmlUtils.addUpdateSetCondition(mih.getPropertyList()));
 		sb.append("</mapper>");
 		return sb.toString();
 	}
