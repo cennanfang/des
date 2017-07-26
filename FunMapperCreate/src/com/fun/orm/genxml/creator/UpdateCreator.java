@@ -65,7 +65,7 @@ public class UpdateCreator implements MethodCreator {
 	private String getSetAndCondition(List<ModelProperty> mps) {
 		StringBuffer sb = new StringBuffer();
 		String idCondition = null;
-		sb.append("\r\n\t\t<trim prefix=\"set\" suffixOverrides=\",\">\r\n");
+		sb.append("\r\n\t\t<trim suffixOverrides=\",\">\r\n");
 		sb.append("\t\t<set>\r\n");
 		for(ModelProperty mp : mps) {
 			if(mp instanceof PrimayProperty) {

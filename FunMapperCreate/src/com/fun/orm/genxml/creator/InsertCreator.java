@@ -32,7 +32,7 @@ public class InsertCreator implements MethodCreator {
 		sb.append(mih.getTableName());
 		sb.append(getColumList(mih.getPropertyList()));
 		sb.append(" values");
-		sb.append(getValuseList(mih.getPropertyList()));
+		sb.append(getValuseList(mih.getPropertyList(), ""));
 		sb.append("\r\n");
 		sb.append("\t</insert>\r\n\r\n");
 		return sb.toString();
@@ -53,7 +53,7 @@ public class InsertCreator implements MethodCreator {
 		sb.append(" values\r\n");
 		sb.append("\t\t<foreach item=\"item\" collection=\"list\" separator=\", \">\r\n");
 		sb.append("\t\t\t");
-		sb.append(getValuseList(mih.getPropertyList()));
+		sb.append(getValuseList(mih.getPropertyList(), "item."));
 		sb.append("\r\n\t\t</foreach>\r\n");
 		sb.append("\t</insert>\r\n\r\n");
 		return sb.toString();
@@ -82,7 +82,7 @@ public class InsertCreator implements MethodCreator {
 	 * @param mps
 	 * @return
 	 */
-	private String getValuseList(List<ModelProperty> mps) {
+	private String getValuseList(List<ModelProperty> mps, String itemPrefix) {
 		StringBuffer sb = new StringBuffer();
 		for (ModelProperty mp : mps) {
 			if(mp instanceof PrimayProperty) {
@@ -95,7 +95,7 @@ public class InsertCreator implements MethodCreator {
 						 + NameUtils.underline2Camel(rp.getReferencedColumn(), true);
 			}
 			sb.append("#{");
-			sb.append("item." + property);
+			sb.append(itemPrefix + property);
 			sb.append("}");
 			sb.append(", ");
 		}
