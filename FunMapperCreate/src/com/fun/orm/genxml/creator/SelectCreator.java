@@ -48,9 +48,9 @@ public class SelectCreator implements MethodCreator {
 	private String createSelectParam(ModelInfoHolder mih) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("\t<select id=\"");
-		sb.append(Constants.SQLID_SELECT_PARAM + "\" parameterType=\"java.util.Map\" resultType=\"");
-		sb.append(mih.getClassName());
-		sb.append("\">\r\n");
+		sb.append(Constants.SQLID_SELECT_PARAM + "\" parameterType=\"java.util.Map\" resultMap=\"");
+		sb.append(NameUtils.getLowerCaseClassName(NameUtils.getShortClassName(mih.getClassName())));
+		sb.append("Result\">\r\n");
 		sb.append("\t\tselect * from ");
 		sb.append(mih.getTableName());
 		sb.append("\r\n\t\t<trim prefixOverrides=\"and\">");
