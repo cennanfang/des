@@ -32,6 +32,7 @@ public class CountCreator implements MethodCreator {
 		sb.append(mih.getTableName());
 		sb.append("\r\n\t\t<where>\r\n");
 		sb.append(XmlUtils.getConditions(mih.getPropertyList()));
+		sb.append(XmlUtils.addBetweenWith());
 		sb.append("\t\t</where>\r\n");
 		sb.append("\t</select>\r\n\r\n");
 		return sb.toString();

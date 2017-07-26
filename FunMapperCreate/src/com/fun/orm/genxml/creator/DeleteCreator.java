@@ -51,6 +51,7 @@ public class DeleteCreator implements MethodCreator {
 		sb.append("\r\n\t\t<trim prefix=\"where\" prefixOverrides=\"and\">");
 		sb.append("\r\n\t\t<where>\t\n");
 		sb.append(XmlUtils.getConditions(mih.getPropertyList()));
+		sb.append(XmlUtils.addBetweenWith());
 		sb.append("\t\t</where>\r\n");
 		sb.append("\t\t</trim>\r\n\r\n");
 		sb.append("\t</delete>\r\n");
