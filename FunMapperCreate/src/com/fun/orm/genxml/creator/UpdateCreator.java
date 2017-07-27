@@ -44,8 +44,7 @@ public class UpdateCreator implements MethodCreator {
 		String modelName = NameUtils.getLowerCaseClassName(NameUtils.getShortClassName(mih.getClassName()));
 		StringBuffer sb = new StringBuffer();
 		sb.append("\t<update id=\"");
-		sb.append(Constants.SQLID_UPDATE_BATCH + "\" parameterType=\"");
-		sb.append(mih.getClassName());
+		sb.append(Constants.SQLID_UPDATE_BATCH + "\" parameterType=\"java.util.List");
 		sb.append("\">\r\n");
 		sb.append("\t\t<foreach collection=\"list\" item=\"");
 		sb.append(modelName);
