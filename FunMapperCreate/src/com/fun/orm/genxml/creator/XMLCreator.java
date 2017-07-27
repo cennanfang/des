@@ -33,7 +33,6 @@ public class XMLCreator {
 			mc.create(sb, mih);
 		}
 		sb.append(XmlUtils.addParamWhereConditions(mih.getPropertyList()));
-		sb.append(XmlUtils.addUpdateSetCondition(mih.getPropertyList()));
 		sb.append("</mapper>");
 		return sb.toString();
 	}

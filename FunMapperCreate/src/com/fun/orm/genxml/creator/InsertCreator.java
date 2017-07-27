@@ -44,6 +44,7 @@ public class InsertCreator implements MethodCreator {
 	 * @return
 	 */
 	private String createInsertBatch(ModelInfoHolder mih) {
+		String modelName = NameUtils.getLowerCaseClassName(NameUtils.getShortClassName(mih.getClassName()));
 		StringBuffer sb = new StringBuffer();
 		sb.append("\t<insert id=\"");
 		sb.append(Constants.SQLID_INSERT_BATCH + "\" parameterType=\"java.util.List\">\r\n");
@@ -51,9 +52,11 @@ public class InsertCreator implements MethodCreator {
 		sb.append(mih.getTableName());
 		sb.append(getColumList(mih.getPropertyList()));
 		sb.append(" values\r\n");
-		sb.append("\t\t<foreach item=\"item\" collection=\"list\" separator=\", \">\r\n");
+		sb.append("\t\t<foreach item=\"");
+		sb.append(modelName);
+		sb.append("\" collection=\"list\" separator=\", \">\r\n");
 		sb.append("\t\t\t");
-		sb.append(getValuseList(mih.getPropertyList(), "item."));
+		sb.append(getValuseList(mih.getPropertyList(), modelName + "."));
 		sb.append("\r\n\t\t</foreach>\r\n");
 		sb.append("\t</insert>\r\n\r\n");
 		return sb.toString();
