@@ -13,7 +13,7 @@ public class IOUtils {
 	 * @return
 	 */
 	public static String packageToPath(String packageName) {
-		return packageName.replace(".", "/");
+		return packageName.replace(".", File.separator);
 	}
 	
 	/**

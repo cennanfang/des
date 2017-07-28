@@ -32,11 +32,4 @@ public class Generator {
 		cm.create(mihs, modelClassPath, mapperNameSpace);
 	}
 	
-	public static void main(String[] args) {
-		try {
-			new Generator("D:/genmodel/", "D:/genmodel/mybatis_xml", "com.cen.signal.model", "com.cen.signal.mapper").generate();
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-		}
-	}
 }

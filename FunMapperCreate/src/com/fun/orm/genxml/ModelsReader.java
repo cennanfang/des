@@ -46,7 +46,7 @@ public class ModelsReader {
 		// 解析所有类
 		List<ModelInfoHolder> mihs = analysisModels(modelClassNames);
 		// 删除编译生成的类
-		deleteClassFile(modelsPath, modelClassNames);
+		// deleteClassFile(modelsPath, modelClassNames);
 		// 返回实体类信息
 		return mihs;
 	}

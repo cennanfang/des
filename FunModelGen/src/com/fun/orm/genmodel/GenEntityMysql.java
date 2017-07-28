@@ -36,7 +36,7 @@ public class GenEntityMysql {
 		this.dbConfig = dbConfig;
 	}
 
-	public void generate(String writeOutPath) throws ClassNotFoundException, SQLException, IOException {
+	public void generate(String writeOutPath, String tmpDir) throws ClassNotFoundException, SQLException, IOException {
 		// 创建连接
 		Connection con = null;
 		Class.forName(dbConfig.getDriverClass());
@@ -51,18 +51,30 @@ public class GenEntityMysql {
 			 */
 			String className = NameUtils
 					.initcapUpCase(NameUtils.underline2Camel(tableName.substring(dbConfig.getTablePrefix().length()), false));
-			String content = new ModelCreator(dbHandder.isNeedJavaUtilPackage(), dbHandder.isNeedJavaSqlsPackage(),
+			String content = new ModelCreator(false, dbHandder.isNeedJavaUtilPackage(), dbHandder.isNeedJavaSqlsPackage(),
 					classPackage, authorName, className, dbConfig.getTablePrefix(), dbHandder.getColNames(), dbHandder.getColTypes(),
 					dbHandder.getColComments(), cis).parse(tableName);
 			/**
 			 * 将实体写入文件
 			 */
-			String writeDir = writeOutPath + IOUtils.packageToPath(classPackage);
+			String packagePath = IOUtils.packageToPath(classPackage);
+			String writeDir = writeOutPath + packagePath;
 			File dir = new File(writeDir);
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
 			IOUtils.writeModelToFile(content, new File(writeDir, className + ".java"));
+			/**
+			 * 工作路径
+			 */
+			File workDir = new File(tmpDir + packagePath);
+			if (!workDir.exists()) {
+				workDir.mkdirs();
+			}
+			content = new ModelCreator(true, dbHandder.isNeedJavaUtilPackage(), dbHandder.isNeedJavaSqlsPackage(),
+					classPackage, authorName, className, dbConfig.getTablePrefix(), dbHandder.getColNames(), dbHandder.getColTypes(),
+					dbHandder.getColComments(), cis).parse(tableName);
+			IOUtils.writeModelToFile(content, new File(workDir, className + ".java"));
 		}
 		if (con != null) {
 			con.close();
@@ -89,19 +101,5 @@ public class GenEntityMysql {
 		return tableNames;
 	}
 
-	/**
-	 * 出口 TODO
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		String classPackage = "com.cen.signal.model";
-		try {
-			new GenEntityMysql(classPackage, "cennanfang", new DatabaseConfig()).generate("D:/genmodel/");
-		} catch (ClassNotFoundException | SQLException | IOException e) {
-			e.printStackTrace();
-		}
-
-	}
 
 }

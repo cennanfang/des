@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * 继承此接口即可使用该接口所有方法
- * @author redbird
+ * @author cennanfang
  *
  * @param <Model> 实体类
  * @param <PK>    实体类主键类型
@@ -45,7 +45,7 @@ public interface FunMapper<Model, PK> {
 	public void update(Model model);
 	
 	/**
-	 * 功能：参数更新
+	 * 功能：参数更新(未实现)
 	 * @param model
 	 */
 	public void updateParam(Map<String, Object> params);

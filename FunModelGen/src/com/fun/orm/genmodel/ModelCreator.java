@@ -17,6 +17,7 @@ public class ModelCreator {
 	public static final String ANNO_TABLE_NAME = "FunTable";
 	private boolean isNeedJavaUtilPackage; // 是否需要导入包java.util.*
 	private boolean isNeedJavaSqlsPackage; // 是否需要导入包java.sql.*
+	private boolean isNeedAnnotation; // 是否需要注解
 	
 	private String packageOutPath;// 指定实体生成所在包的路径
 	private String authorName;// 作者名字
@@ -38,11 +39,12 @@ public class ModelCreator {
 	private boolean isImportTB = false;
 	
 	
-	public ModelCreator(boolean isNeedJavaUtilPackage, boolean isNeedJavaSqlsPackage, String packageOutPath,
+	public ModelCreator(boolean isNeedAnnotation, boolean isNeedJavaUtilPackage, boolean isNeedJavaSqlsPackage, String packageOutPath,
 			String authorName, String className, String tablePrefix, List<String> colNames, List<String> colTypes,
 			List<String> colComments, Map<String, ConstraintInfo> conInfos) {
 		this.isNeedJavaUtilPackage = isNeedJavaUtilPackage;
 		this.isNeedJavaSqlsPackage = isNeedJavaSqlsPackage;
+		this.isNeedAnnotation = isNeedAnnotation;
 		this.packageOutPath = packageOutPath;
 		this.authorName = authorName;
 		this.className = className;
@@ -51,7 +53,6 @@ public class ModelCreator {
 		this.colTypes = colTypes;
 		this.colComments = colComments;
 		this.conInfos = conInfos;
-		
 	}
 
 	/**
@@ -82,12 +83,14 @@ public class ModelCreator {
 		sbPreporty.append("* " + new Date() + " " + this.authorName + "\r\n");
 		sbPreporty.append("*/ \r\n");
 		// 实体部分
-		sbPreporty.append("@");
-		sbPreporty.append(ANNO_TABLE_NAME);
-		sbPreporty.append("(\"");
-		sbPreporty.append(tableName);
-		sbPreporty.append("\")\r\n");
-		isImportTB = true;
+		if(isNeedAnnotation) {
+			sbPreporty.append("@");
+			sbPreporty.append(ANNO_TABLE_NAME);
+			sbPreporty.append("(\"");
+			sbPreporty.append(tableName);
+			sbPreporty.append("\")\r\n");
+			isImportTB = true;
+		}
 		sbPreporty.append("public class " + className + "{\r\n");
 		processClassBody(sbPreporty);// 属性
 		sbMethod.append("}\r\n");
@@ -110,23 +113,27 @@ public class ModelCreator {
 			ConstraintInfo ci = conInfos.get(colName);
 			if(ci != null) {
 				if(ci.getConstraintType().equals(ConstraintType.PRIMARY)) {
-					sb.append("\t@" + ANNO_PRIMARY);
-					sb.append("(\"");
-					sb.append(colName);
-					sb.append("\")\r\n");
+					if(isNeedAnnotation) {
+						sb.append("\t@" + ANNO_PRIMARY);
+						sb.append("(\"");
+						sb.append(colName);
+						sb.append("\")\r\n");
+						isImportPK = true;
+					}
 					sb.append("\tprivate " + sqlType2JavaType(colTypes.get(i)) + " " + NameUtils.underline2Camel(colName, true)
 					+ ";\r\n");
-					isImportPK = true;
 					processMethod(colName, sqlType2JavaType(colTypes.get(i)));
 				} else if(ci.getConstraintType().equals(ConstraintType.FOREIGNKEY)) {
-					sb.append("\t@" + ANNO_FOREIGNKEY);
-					sb.append("(");
-					sb.append("referencedTable=\"" + ci.getRefTable());
-					sb.append("\", ");
-					sb.append("referencedColumn=\"" + ci.getRefColumn());
-					sb.append("\")\r\n");
-					isImportFK = true;
-					addAnnoColumn(sb, colName);;
+					if(isNeedAnnotation) {
+						sb.append("\t@" + ANNO_FOREIGNKEY);
+						sb.append("(");
+						sb.append("referencedTable=\"" + ci.getRefTable());
+						sb.append("\", ");
+						sb.append("referencedColumn=\"" + ci.getRefColumn());
+						sb.append("\")\r\n");
+						isImportFK = true;
+						addAnnoColumn(sb, colName);
+					}
 					String classType = NameUtils.initcapUpCase(NameUtils.underline2Camel(ci.getRefTable().substring(tablePrefix.length()), true));
 					String property = NameUtils.initcapLowerCase(classType);
 					sb.append("\tprivate " + classType + " " + property + ";\r\n");
