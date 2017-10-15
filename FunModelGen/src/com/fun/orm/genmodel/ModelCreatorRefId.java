@@ -69,6 +69,12 @@ public class ModelCreatorRefId {
 		sbMethod = new StringBuffer();
 		sbImport.append("package " + this.packageOutPath + ";\r\n");
 		sbImport.append("\r\n");
+		/**
+		 * 引入Table标签 依赖
+		 */
+		if(!isNeedAnnotation) {
+			sbPreporty.append("import javax.persistence.Table; \r\n");
+		}
 		// 判断是否导入工具包
 		if (isNeedJavaUtilPackage) {
 			sbImport.append("import java.util.Date;\r\n");
@@ -90,6 +96,12 @@ public class ModelCreatorRefId {
 			sbPreporty.append(tableName);
 			sbPreporty.append("\")\r\n");
 			isImportTB = true;
+		}
+		/**
+		 * 引入Table标签
+		 */
+		if(!isNeedAnnotation) {
+			sbPreporty.append("@Table(name = \"" + tableName + "\")\r\n");
 		}
 		sbPreporty.append("public class " + className + "{\r\n");
 		processClassBody(sbPreporty);// 属性
