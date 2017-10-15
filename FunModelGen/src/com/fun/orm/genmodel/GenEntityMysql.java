@@ -43,6 +43,7 @@ public class GenEntityMysql {
 		con = DriverManager.getConnection(dbConfig.getDbUrl(), dbConfig.getDbUser(), dbConfig.getDbPass());
 		List<String> tableNames = readTables(con);
 		for (String tableName : tableNames) {
+			System.out.println("tableName : " + tableName);
 			DatabaseHandler dbHandder = new DatabaseHandler();
 			dbHandder.readTableSchema(con, tableName);
 			Map<String, ConstraintInfo> cis = dbHandder.readTableConstraint(con, tableName);
@@ -59,6 +60,7 @@ public class GenEntityMysql {
 			 */
 			String packagePath = IOUtils.packageToPath(classPackage);
 			String writeDir = writeOutPath + packagePath;
+			System.out.println(writeDir);
 			File dir = new File(writeDir);
 			if (!dir.exists()) {
 				dir.mkdirs();
@@ -95,7 +97,10 @@ public class GenEntityMysql {
 		pStemt = con.prepareStatement(sql);
 		ResultSet rs = pStemt.executeQuery(sql);
 		while (rs.next()) {
-			tableNames.add(rs.getString(1));
+			String tableName = rs.getString(1);
+			if(tableName.startsWith(DatabaseConfig.TABLE_PREFIX)) {
+				tableNames.add(tableName);
+			}
 		}
 		pStemt.close();
 		return tableNames;

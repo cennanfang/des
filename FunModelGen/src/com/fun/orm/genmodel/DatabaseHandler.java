@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.fun.orm.genmodel.bean.ConstraintInfo;
 import com.fun.orm.genmodel.bean.ConstraintInfo.ConstraintType;
+import com.fun.orm.genmodel.bean.DatabaseConfig;
 
 public class DatabaseHandler {
 	
@@ -35,10 +36,10 @@ public class DatabaseHandler {
 		sql.append("'");
 		sql.append(tableName);
 		sql.append("'");
-		if(dbName != null && "".equals(dbName)) {
+		if(dbName != null && !"".equals(dbName)) {
 			sql.append(" and TABLE_SCHEMA=");
 			sql.append("'");
-			sql.append("signalsrc");
+			sql.append(dbName);
 			sql.append("'");
 		}
 		sql.append(";");
@@ -59,10 +60,10 @@ public class DatabaseHandler {
 		sql.append("'");
 		sql.append(tableName);
 		sql.append("'");
-		if(dbName != null && "".equals(dbName)) {
+		if(dbName != null && !"".equals(dbName)) {
 			sql.append(" and TABLE_SCHEMA=");
 			sql.append("'");
-			sql.append("signalsrc");
+			sql.append(dbName);
 			sql.append("'");
 		}
 		sql.append(";");
@@ -72,7 +73,7 @@ public class DatabaseHandler {
 	public Map<String, ConstraintInfo> readTableConstraint(Connection con, String tableName) throws SQLException {
 		Map<String, ConstraintInfo> constraint = new HashMap<>();
 		PreparedStatement pStemt = null;
-		String sql = getTableConstraintSchemaSql(tableName, null);
+		String sql = getTableConstraintSchemaSql(tableName, DatabaseConfig.DB_NAME);
 		pStemt = con.prepareStatement(sql);
 		ResultSet rs = pStemt.executeQuery(sql);
 		while (rs.next()) {
@@ -107,7 +108,7 @@ public class DatabaseHandler {
 		 * 获取表结构
 		 */
 		PreparedStatement pStemt = null;
-		String sql = getTableSchemaSql(tableName, null);
+		String sql = getTableSchemaSql(tableName, DatabaseConfig.DB_NAME);
 		pStemt = con.prepareStatement(sql);
 		ResultSet rs = pStemt.executeQuery(sql);
 		colComments = new ArrayList<String>();

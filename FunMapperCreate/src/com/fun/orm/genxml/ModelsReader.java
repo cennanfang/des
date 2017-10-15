@@ -77,10 +77,13 @@ public class ModelsReader {
 	 * @throws IOException 
 	 */
 	public void complieModels(String modelPackage, String modelsPath) throws IOException {
+		System.out.println("modelPackage:" + modelPackage);
+		System.out.println("modelsPath:" + modelsPath);
 		File modelsDir = new File(modelsPath);
 		String[] modelClassNames = modelsDir.list(new MyFilenameFilter());
 		File[] files = new File[modelClassNames.length];
 		for (int i = 0; i < modelClassNames.length; i++) {
+			System.out.println("javaSrcFiles:" + modelClassNames[i]);
 			files[i] = new File(modelsPath, modelClassNames[i]);
 		}
 		ClassUtils.compileTheJavaSrcFile(files);
