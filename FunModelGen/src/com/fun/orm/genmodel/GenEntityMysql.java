@@ -52,7 +52,7 @@ public class GenEntityMysql {
 			 */
 			String className = NameUtils
 					.initcapUpCase(NameUtils.underline2Camel(tableName.substring(dbConfig.getTablePrefix().length()), false));
-			String content = new ModelCreator(false, dbHandder.isNeedJavaUtilPackage(), dbHandder.isNeedJavaSqlsPackage(),
+			String content = new ModelCreatorRefId(false, dbHandder.isNeedJavaUtilPackage(), dbHandder.isNeedJavaSqlsPackage(),
 					classPackage, authorName, className, dbConfig.getTablePrefix(), dbHandder.getColNames(), dbHandder.getColTypes(),
 					dbHandder.getColComments(), cis).parse(tableName);
 			/**
@@ -73,7 +73,7 @@ public class GenEntityMysql {
 			if (!workDir.exists()) {
 				workDir.mkdirs();
 			}
-			content = new ModelCreator(true, dbHandder.isNeedJavaUtilPackage(), dbHandder.isNeedJavaSqlsPackage(),
+			content = new ModelCreatorRefId(true, dbHandder.isNeedJavaUtilPackage(), dbHandder.isNeedJavaSqlsPackage(),
 					classPackage, authorName, className, dbConfig.getTablePrefix(), dbHandder.getColNames(), dbHandder.getColTypes(),
 					dbHandder.getColComments(), cis).parse(tableName);
 			IOUtils.writeModelToFile(content, new File(workDir, className + ".java"));

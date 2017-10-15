@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.util.List;
 
 import com.fun.orm.genxml.creator.XMLCreator;
+import com.fun.orm.genxml.creator.XMLCreatorRefId;
 import com.fun.orm.retrieve.ModelInfoHolder;
+import com.fun.orm.utils.Constants;
 import com.fun.orm.utils.IOUtils;
 import com.fun.orm.utils.NameUtils;
 
@@ -32,8 +34,8 @@ public class XMLsGenerate {
 			writeDir.mkdirs();
 		}
 		for(ModelInfoHolder mih : mihs) {
-			String xml = new XMLCreator().create(mih, mapperNameSpace);
-			String xmlFileName = NameUtils.getShortClassName(mih.getClassName()) + "FunMapper.xml";
+			String xml = new XMLCreatorRefId().create(mih, mapperNameSpace);
+			String xmlFileName = NameUtils.getShortClassName(mih.getClassName()) + Constants.MAPPER_NAME_SPACE_SUFFIX + ".xml";
 			IOUtils.writeModelToFile(xml, new File(writeDir, xmlFileName));
 		}
 	}
