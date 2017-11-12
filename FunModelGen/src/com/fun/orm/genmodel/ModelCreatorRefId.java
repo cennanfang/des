@@ -211,9 +211,9 @@ public class ModelCreatorRefId {
 			return "Byte";
 		} else if (sqlType.indexOf("smallint") != -1) {
 			return "Short";
-		} else if (sqlType.indexOf("int") != -1) {
+		} /*else if (sqlType.indexOf("int") != -1) {
 			return "Integer";
-		} else if (sqlType.indexOf("bigint") != -1) {
+		} */else if (sqlType.indexOf("int") != -1 || sqlType.indexOf("bigint") != -1) {
 			return "Long";
 		} else if (sqlType.indexOf("float") != -1) {
 			return "Float";
