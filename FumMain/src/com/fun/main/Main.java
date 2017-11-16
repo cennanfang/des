@@ -11,11 +11,12 @@ import com.fun.orm.genxml.Generator;
 public class Main {
 
 	public static void main(String[] args) {
-		String classPath = "D:/eclipse/wehelp/src/main/java/";
-		String modelPackage = "com.cen.wehelp.model";
-		String mybatisXmlPath = "D:/eclipse/wehelp/src/main/resources/mybatis_mapper";
-		String mapperPackage = "com.cen.wehelp.mapper";
+		String classPath = "E:\\c\\dev\\workspace\\shpre\\src\\main\\java\\";
+		String modelPackage = "com.buliyiren.shpre.model";
+		String mybatisXmlPath = "E:\\c\\dev\\workspace\\shpre\\src\\main\\resources\\mybatis_mapper\\";
+		String mapperPackage = "com.buliyiren.shpre.mapper";
 		String tmpDir = System.getProperty("user.dir") + File.separator + "tmp" + File.separator;
+		System.out.println("tmpDir=" + tmpDir);
 		File tmpDirFile = new File(tmpDir);
 		if(tmpDirFile.exists()) {
 			tmpDirFile.delete();

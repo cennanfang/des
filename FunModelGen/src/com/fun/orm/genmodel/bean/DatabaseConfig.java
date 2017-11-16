@@ -3,12 +3,13 @@ package com.fun.orm.genmodel.bean;
 public class DatabaseConfig {
 
 	// 数据库连接
-	public static final String DB_NAME = "wehelpsrc";
+	public static final String DB_NAME = "shpre";
 	private static final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
 	private static final String NAME = "root";
 	private static final String PASS = "Root_123";
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	public static final String TABLE_PREFIX = "t_";
+	public static final String BASE_MODEL = "BaseModel"; // = null则没有基类，否则有
 	
 
 	public DatabaseConfig() {

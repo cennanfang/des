@@ -214,10 +214,8 @@ public class ModelCreator {
 	 * @return
 	 */
 	private String sqlType2JavaType(String sqlType) {
-		if (sqlType.indexOf("bit") != -1) {
+		if (sqlType.indexOf("tinyint") != -1) {
 			return "Boolean";
-		} else if (sqlType.indexOf("tinyint") != -1) {
-			return "Byte";
 		} else if (sqlType.indexOf("smallint") != -1) {
 			return "Short";
 		} else if (sqlType.indexOf("int") != -1) {

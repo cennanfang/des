@@ -35,6 +35,7 @@ public class ClassUtils {
 	public static boolean compileTheJavaSrcFile(File[] files) throws IOException {
 		boolean flag = false;
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		System.out.println("JavaCompiler=" + compiler);
 		StandardJavaFileManager fileMgr = compiler.getStandardFileManager(null, null, null);
 		CompilationTask t = compiler.getTask(null, fileMgr, null, null, null, fileMgr.getJavaFileObjects(files));
 		flag = t.call();

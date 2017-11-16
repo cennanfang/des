@@ -83,8 +83,8 @@ public class ModelsReader {
 		String[] modelClassNames = modelsDir.list(new MyFilenameFilter());
 		File[] files = new File[modelClassNames.length];
 		for (int i = 0; i < modelClassNames.length; i++) {
-			System.out.println("javaSrcFiles:" + modelClassNames[i]);
 			files[i] = new File(modelsPath, modelClassNames[i]);
+			System.out.println("javaSrcFiles:" + files[i].getAbsolutePath());
 		}
 		ClassUtils.compileTheJavaSrcFile(files);
 	}

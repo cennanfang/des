@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.fun.orm.genmodel.bean.ConstraintInfo;
 import com.fun.orm.genmodel.bean.ConstraintInfo.ConstraintType;
+import com.fun.orm.genmodel.bean.DatabaseConfig;
 import com.fun.orm.utils.NameUtils;
 
 public class ModelCreatorRefId {
@@ -103,7 +104,11 @@ public class ModelCreatorRefId {
 		if(!isNeedAnnotation) {
 			sbPreporty.append("@Table(name = \"" + tableName + "\")\r\n");
 		}
-		sbPreporty.append("public class " + className + "{\r\n");
+		sbPreporty.append("public class " + className);
+		if(!isNeedAnnotation && null != DatabaseConfig.BASE_MODEL) {
+			sbPreporty.append(" extends " + DatabaseConfig.BASE_MODEL);
+		}
+		sbPreporty.append(" {\r\n");
 		processClassBody(sbPreporty);// 属性
 		sbMethod.append("}\r\n");
 		importAnnoClass();
@@ -205,15 +210,15 @@ public class ModelCreatorRefId {
 	 * @return
 	 */
 	private String sqlType2JavaType(String sqlType) {
-		if (sqlType.indexOf("bit") != -1) {
+		if (sqlType.indexOf("tinyint") != -1) {
 			return "Boolean";
-		} else if (sqlType.indexOf("tinyint") != -1) {
+		} /*else if (sqlType.indexOf("tinyint") != -1) {
 			return "Byte";
-		} else if (sqlType.indexOf("smallint") != -1) {
+		} */else if (sqlType.indexOf("smallint") != -1) {
 			return "Short";
-		} /*else if (sqlType.indexOf("int") != -1) {
+		} else if (sqlType.indexOf("int") != -1) {
 			return "Integer";
-		} */else if (sqlType.indexOf("int") != -1 || sqlType.indexOf("bigint") != -1) {
+		} else if (sqlType.indexOf("bigint") != -1) {
 			return "Long";
 		} else if (sqlType.indexOf("float") != -1) {
 			return "Float";
