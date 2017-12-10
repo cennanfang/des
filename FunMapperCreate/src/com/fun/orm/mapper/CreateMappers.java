@@ -8,8 +8,8 @@ import com.fun.orm.retrieve.ModelInfoHolder;
 public class CreateMappers {
 
 	public void create(List<ModelInfoHolder> mihs, String classPath, String mapperPackage) throws IOException {
-//		CreateFunMapper cfm = new CreateFunMapper();
-		CreateTkMapper cfm = new CreateTkMapper();
+		CreateFunMapper cfm = new CreateFunMapper();
+//		CreateTkMapper cfm = new CreateTkMapper();
 		for(ModelInfoHolder mih : mihs) {
 			cfm.createMapper(mih, classPath, mapperPackage);
 		}

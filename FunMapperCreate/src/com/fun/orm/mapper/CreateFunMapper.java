@@ -17,7 +17,7 @@ public class CreateFunMapper {
 		
 		StringBuffer sb = new StringBuffer();
 		sb.append("package " + mapperPackage + ";\r\n\r\n");
-		sb.append("import " + Constants.PROJECT_PACKAGE + ".mapper.FunMapper;\r\n");
+		//sb.append("import " + Constants.PROJECT_PACKAGE + ".mapper.FunMapper;\r\n");
 		sb.append("import " + className + "; \r\n");
 		// 注释部分
 		sb.append("/**\r\n");

@@ -3,7 +3,7 @@ package com.fun.orm.genmodel.bean;
 public class DatabaseConfig {
 
 	// 数据库连接
-	public static final String DB_NAME = "shpre";
+	public static final String DB_NAME = "wehelp";
 	private static final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
 	private static final String NAME = "root";
 	private static final String PASS = "Root_123";
