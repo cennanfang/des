@@ -2,8 +2,8 @@ package com.fun.orm.utils;
 
 public class Constants {
 
-//	public static final String MAPPER_NAME_SPACE_SUFFIX = "FunMapper";
-	public static final String MAPPER_NAME_SPACE_SUFFIX = "Mapper";
+	public static final String MAPPER_NAME_SPACE_SUFFIX = "FunMapper";
+//	public static final String MAPPER_NAME_SPACE_SUFFIX = "Mapper";
 	// sqlmap.xml定义文件中对应的sqlid
 	public static final String SQLID_INSERT = "insert";
 	public static final String SQLID_INSERT_BATCH = "insertBatch";

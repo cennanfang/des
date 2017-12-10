@@ -34,7 +34,8 @@ public class XMLsGenerate {
 			writeDir.mkdirs();
 		}
 		for(ModelInfoHolder mih : mihs) {
-			String xml = new XMLCreatorRefId().create(mih, mapperNameSpace);
+//			String xml = new XMLCreatorRefId().create(mih, mapperNameSpace);
+			String xml = new XMLCreator().create(mih, mapperNameSpace);
 			String xmlFileName = NameUtils.getShortClassName(mih.getClassName()) + Constants.MAPPER_NAME_SPACE_SUFFIX + ".xml";
 			IOUtils.writeModelToFile(xml, new File(writeDir, xmlFileName));
 		}

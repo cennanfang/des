@@ -5,7 +5,7 @@ import com.fun.orm.annotation.FunPrimary;
 
 /**
 * Role 实体类
-* Sun Dec 10 21:29:50 CST 2017 cennanfang
+* Sun Dec 10 21:42:31 CST 2017 cennanfang
 */ 
 @FunTable("t_role")
 public class Role {
